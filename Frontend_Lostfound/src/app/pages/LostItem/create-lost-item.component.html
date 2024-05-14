@@ -1,0 +1,37 @@
+<div>
+  <h2>Crear Nuevo Objeto Perdido</h2>
+  <form *ngIf="createLostItemForm" [formGroup]="createLostItemForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="tipo">Tipo:</label>
+      <select formControlName="tipo" id="tipo">
+        <option *ngFor="let tipo of tipos" [value]="tipo._id">{{ tipo.nombre }}</option>
+        <option value="otro">Otro</option> <!-- Agregar la opción "Otro" -->
+      </select>
+    </div>
+    <div *ngIf="tipoControl && tipoControl.value === 'otro'">
+      <label for="nuevoTipo">Nuevo Tipo:</label>
+      <input type="text" formControlName="nuevoTipo" id="nuevoTipo">
+    </div>
+    <div>
+      <label for="descripcion">Descripción:</label>
+      <textarea formControlName="descripcion" id="descripcion"></textarea>
+    </div>
+    <div>
+      <label for="detalles">Detalles:</label>
+      <textarea formControlName="detalles" id="detalles"></textarea>
+    </div>
+    <div>
+      <label for="ubicacion">Ubicación:</label>
+      <input type="text" formControlName="ubicacion" id="ubicacion">
+    </div>
+    <div>
+      <label for="informacionContacto">Información de Contacto:</label>
+      <textarea formControlName="informacionContacto" id="informacionContacto"></textarea>
+    </div>
+    <div>
+      <label for="imagen">Imagen:</label>
+      <input type="file" name="imagen" #imageFileInput (change)="onImageSelected($event)">
+    </div>
+    <button type="submit">Crear</button>
+  </form>
+</div>

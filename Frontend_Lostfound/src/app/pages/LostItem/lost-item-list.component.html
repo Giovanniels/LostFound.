@@ -1,0 +1,30 @@
+<div class="container">
+    <h2>Lista de Objetos Perdidos</h2>
+    <!-- Agregar un formulario de búsqueda por tipo -->
+    <form (submit)="searchByType()">
+        <label for="tipo">Buscar por Tipo:</label>
+        <input type="text" id="tipo" [(ngModel)]="tipo" name="tipo">
+        <button type="submit">Buscar</button>
+    </form>
+    <button (click)="loadUserLostItems()">Historial de Publicaciones</button> <!-- Nuevo botón -->
+    <button (click)="navigateToCreateLostItem()">Crear Publicación</button>
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+    <button (click)="goBack()">Volver Atrás</button> <!-- Botón para volver atrás -->
+    <ul *ngIf="!errorMessage">
+        <li *ngFor="let item of lostItems">
+            <img [src]="item.imagen" alt="Imagen del objeto perdido">
+            <p><strong>Fecha:</strong> {{ item.fecha | date:'yyyy-MM-dd' }}</p>
+            <!-- Mostrar el nombre del tipo -->
+            <p><strong>Tipo:</strong> {{ item.tipo.nombre }}</p>
+            <p><strong>Descripción:</strong> {{ item.descripcion }}</p>
+            <p><strong>Detalles:</strong> {{ item.detalles }}</p>
+            <p><strong>Ubicación:</strong> {{ item.ubicacion }}</p>
+            <p><strong>Información de Contacto:</strong> {{ item.informacionContacto }}</p>
+            <button (click)="navigateToLostItemDetail(item._id)">Detalles</button>
+
+
+        </li>
+    </ul>
+</div>

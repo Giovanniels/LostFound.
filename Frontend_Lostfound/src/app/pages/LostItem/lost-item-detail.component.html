@@ -1,0 +1,21 @@
+<div class="container">
+  <h2>Detalles del Objeto Perdido</h2>
+  <div *ngIf="lostItem">
+      <img [src]="lostItem.imagen" alt="Imagen del objeto perdido">
+      <p><strong>Fecha:</strong> {{ lostItem.fecha | date:'yyyy-MM-dd' }}</p>
+      <p><strong>Tipo:</strong> {{ lostItem.tipo.nombre }}</p>
+      <p><strong>Descripción:</strong> {{ lostItem.descripcion }}</p>
+      <p><strong>Detalles:</strong> {{ lostItem.detalles }}</p>
+      <p><strong>Ubicación:</strong> {{ lostItem.ubicacion }}</p>
+      <p><strong>Información de Contacto:</strong> {{ lostItem.informacionContacto }}</p>
+      <button (click)="goBack()">Volver Atrás</button> <!-- Botón para volver atrás -->
+  </div>
+  <div *ngIf="!lostItem"> <!-- Mostrar un mensaje si lostItem no está definido -->
+      <p>El objeto perdido no se ha encontrado.</p>
+      <button (click)="goBack()">Volver Atrás</button> <!-- Botón para volver atrás -->
+  </div>
+  <div *ngIf="lostItemDebug">
+      <h3>Mensaje de Depuración:</h3>
+      <pre>{{ lostItemDebug | json }}</pre>
+  </div>
+</div>

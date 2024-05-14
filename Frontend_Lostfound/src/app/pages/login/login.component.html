@@ -1,0 +1,37 @@
+<div class="parent"> 
+    <div class="container" [ngClass]="isSignDivVisible ? 'active' : ''" id="container">
+        <div class="form-container sign-up">
+            <form>
+                <h1>Crear Cuenta</h1>
+                <span> Ingresa tu correo electrónico universitario para registrarte</span>
+                <input type="text" name="nombre" [(ngModel)]="signUpObj.nombre" placeholder="Nombre">
+                <input type="email" name="email" [(ngModel)]="signUpObj.email" placeholder="Correo electrónico universitario">
+                <button (click)="createUsuario()">Registrarse</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form>
+                <h1>Iniciar Sesión</h1>
+                <span>Ingresa con tu correo electrónico y contraseña</span>
+                <input type="email" name="email" [(ngModel)]="loginObj.email" placeholder="Correo electrónico">
+                <input type="contrasenaTemporal" name="contrasenaTemporal" [(ngModel)]="loginObj.contrasenaTemporal" placeholder="Contraseña">
+                <a href="#">¿Olvidaste tu contraseña?</a>
+                <button (click)="onLogin()">Iniciar Sesión</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Bienvenido a Lostfound</h1>
+                    <p>Ingresa tu correo electrónico universitario y contraseña para ingresar al sitio web</p>
+                    <button type="button" class="hidden" id="login" (click)="isSignDivVisible = false">Iniciar Sesión</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Registrarse</h1>
+                    <p>Si no tienes una cuenta registrate con tu correo universitario </p>
+                    <button type="button" class="hidden" id="register" (click)="isSignDivVisible = true">Registrarse</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
