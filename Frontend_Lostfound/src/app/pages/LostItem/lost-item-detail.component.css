@@ -43,3 +43,16 @@
     background-color: #0056b3;
   }
   
+  .rating {
+    font-size: 24px; /* Tamaño de las estrellas */
+  }
+  
+  .star {
+    color: #ccc; /* Color de las estrellas vacías */
+    cursor: pointer; /* Cambia el cursor a una mano */
+  }
+  
+  .star.filled {
+    color: #ffbb00; /* Color de las estrellas llenas */
+  }
+  

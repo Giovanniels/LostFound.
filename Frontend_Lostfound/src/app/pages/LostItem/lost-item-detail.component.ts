@@ -60,38 +60,47 @@ export class LostItemDetailComponent implements OnInit {
   goBack(): void {
     this.router.navigate(['/lost-items']);
   }
+  
+  selectedStars: number = 0; // Variable para almacenar la cantidad de estrellas seleccionadas
+
 
   // Método para valorar al usuario
-rateUser(userId: string): void {
-  // Obtener el ID del usuario que ha iniciado sesión desde el almacenamiento local
-  const usuarioQueValora = localStorage.getItem('userId');
-
-  // Verificar si se ha iniciado sesión y se ha obtenido el ID del usuario
-  if (!usuarioQueValora) {
-    console.error('No se ha iniciado sesión o no se ha obtenido el ID del usuario.');
-    // Aquí puedes agregar una lógica para manejar este caso, como redirigir al usuario a la página de inicio de sesión.
-    return;
-  }
-
-  // Crear el objeto de valoración
-  const valoracionData = {
-    usuarioValorado: userId,
-    usuarioQueValora: usuarioQueValora, // Utilizar el ID del usuario que ha iniciado sesión
-    puntaje: this.rating,
-    comentario: this.comentario
-  };
-
-  // Realizar la solicitud HTTP POST a la API
-  this.valoracionService.crearValoracion(valoracionData).subscribe({
-    next: (response: any) => {
-      console.log('Respuesta de la solicitud de valoración:', response);
-      // Aquí puedes agregar lógica adicional si es necesario
-    },
-    error: (error: any) => {
-      console.error('Error al valorar al usuario:', error);
-      // Aquí puedes manejar el error de acuerdo a tus necesidades
+  rateUser(userId: string): void {
+    // Obtener el ID del usuario que ha iniciado sesión desde el almacenamiento local
+    const usuarioQueValora = localStorage.getItem('userId');
+  
+    // Verificar si se ha iniciado sesión y se ha obtenido el ID del usuario
+    if (!usuarioQueValora) {
+      console.error('No se ha iniciado sesión o no se ha obtenido el ID del usuario.');
+      // Aquí puedes agregar una lógica para manejar este caso, como redirigir al usuario a la página de inicio de sesión.
+      return;
     }
-  });
-}
+  
+    // Convertir selectedStars a number
+    const rating = this.selectedStars;
+  
+    // Crear el objeto de valoración
+    const valoracionData = {
+      usuarioValorado: userId,
+      usuarioQueValora: usuarioQueValora, // Utilizar el ID del usuario que ha iniciado sesión
+      puntaje: rating,
+      comentario: this.comentario
+    };
+  
+    // Realizar la solicitud HTTP POST a la API
+    this.valoracionService.crearValoracion(valoracionData).subscribe({
+      next: (response: any) => {
+        console.log('Respuesta de la solicitud de valoración:', response);
+        // Aquí puedes agregar lógica adicional si es necesario
+      },
+      error: (error: any) => {
+        console.error('Error al valorar al usuario:', error);
+        // Aquí puedes manejar el error de acuerdo a tus necesidades
+      }
+    });
+  }
+  
+  
+  
 
 }

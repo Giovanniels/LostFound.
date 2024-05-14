@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { AuthService } from './pages/services/auth.service'; // Importa el AuthService
 import { CommonModule } from '@angular/common'; // Importa CommonModule
 import { LostItemDetailComponent } from './pages/LostItem/lost-item-detail.component'; // Importa LostItemDetailComponent
+import { RatingModule } from 'ngx-bootstrap/rating'; // Importa RatingModule desde ngx-bootstrap
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { LostItemDetailComponent } from './pages/LostItem/lost-item-detail.compo
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    RatingModule.forRoot(), // Importa RatingModule desde ngx-bootstrap
     ToastrModule.forRoot({
       positionClass: 'toast-center',
     })
