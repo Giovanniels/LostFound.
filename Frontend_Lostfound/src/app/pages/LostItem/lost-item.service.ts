@@ -2,6 +2,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -76,8 +77,26 @@ export class LostItemsService {
 
   // Método para obtener un objeto perdido por su ID
   getLostItemById(id: string): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/api/objectoPerdido/${id}`);
+    return this.http.get<any>(`${this.apiUrl}/api/objectoPerdido/${id}`).pipe(
+      map((response: any) => {
+        if (response.state === 'Success' && response.data) {
+          const lostItem = response.data;
+          // Asegurar que userId sea una cadena
+          if (lostItem.userId) {
+            lostItem.userId = lostItem.userId.toString();
+          }
+          return lostItem;
+        } else {
+          throw new Error("La respuesta del servicio no es válida o los datos son nulos.");
+        }
+      }),
+      catchError((error: any) => {
+        throw new Error("Error al obtener el objeto perdido: " + error.message);
+      })
+    );
   }
+  
+  
 
 
 
@@ -95,5 +114,40 @@ export class TipoService {
   // Método para obtener todos los tipos generales
   getTipos(): Observable<string[]> {
     return this.http.get<string[]>(`${this.apiUrl}/api/tipo`);
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ValoracionService {
+  private apiUrl = 'http://localhost:3001/api/Valoracion'; // Reemplaza con la URL de tu backend
+
+  constructor(private http: HttpClient) { }
+
+  crearValoracion(valoracionData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/rate`, valoracionData);
+  }
+
+  getValoracionesByUsuarioId(usuarioId: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/${usuarioId}`);
+  }
+
+  obtenerPromedioValoraciones(usuarioId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/promedio/${usuarioId}`);
+  }
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+  private apiUrl = 'http://localhost:3001'; // Reemplaza esto con la URL de tu backend
+
+  constructor(private http: HttpClient) { }
+
+  // Método para obtener la información de un usuario por su ID
+  getUserById(userId: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/api/usuario/${userId}`);
   }
 }

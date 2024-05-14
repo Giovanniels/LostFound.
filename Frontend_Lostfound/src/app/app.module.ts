@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './pages/layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { LostItemsService, TipoService } from './pages/LostItem/lost-item.service';
+import { LostItemsService, TipoService, ValoracionService, UserService } from './pages/LostItem/lost-item.service';
 import { LostItemsListComponent } from './pages/LostItem/lost-item-list.component';
 import { CreateLostItemComponent } from './pages/LostItem/create-lost-item.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,6 +42,8 @@ import { LostItemDetailComponent } from './pages/LostItem/lost-item-detail.compo
   providers: [
     LostItemsService,
     TipoService,
+    ValoracionService,
+    UserService,
     AuthService
   ],
   bootstrap: [AppComponent]
