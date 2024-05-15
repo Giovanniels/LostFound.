@@ -42,13 +42,16 @@ async function obtenerTodasLasValoraciones(req, res) {
 async function obtenerValoracionesPorUsuario(req, res) {
     try {
         const { usuarioId } = req.params;
-        const valoraciones = await Valoracion.find({ usuarioValorado: usuarioId });
+        const valoraciones = await Valoracion.find({ usuarioValorado: usuarioId })
+            .populate('usuarioQueValora', 'nombre'); // Solo recuperamos el nombre del usuarioQueValora
         res.status(200).json({ success: true, valoraciones });
     } catch (error) {
         console.error("Error al obtener las valoraciones del usuario:", error);
         res.status(500).json({ success: false, message: "Error al obtener las valoraciones del usuario" });
     }
 }
+
+
 
 async function obtenerPromedioValoraciones(req, res) {
     try {

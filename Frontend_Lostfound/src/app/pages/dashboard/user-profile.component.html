@@ -3,6 +3,17 @@
   <div *ngIf="loggedInUser">
     <p><strong>Nombre:</strong> {{ loggedInUser.nombre }}</p>
     <p><strong>Email:</strong> {{ loggedInUser.email }}</p>
+    <!-- Mostrar promedio de valoraciones como estrellas -->
+    <div class="user-rating">
+      <p><strong>Valoración Usuario:</strong> {{ averageRating }}/5</p>
+      <span class="star" [class.filled]="averageRating >= 1">&#9733;</span>
+      <span class="star" [class.filled]="averageRating >= 2">&#9733;</span>
+      <span class="star" [class.filled]="averageRating >= 3">&#9733;</span>
+      <span class="star" [class.filled]="averageRating >= 4">&#9733;</span>
+      <span class="star" [class.filled]="averageRating >= 5">&#9733;</span>
+    </div>
+    <!-- Botón para mostrar las valoraciones recibidas -->
+    <button type="button" class="btn btn-primary" (click)="showReceivedRatings()">Mostrar Valoraciones Recibidas</button>
     <!-- Mostrar formulario para cambiar la contraseña -->
     <form (submit)="changePassword()">
       <div class="form-group">

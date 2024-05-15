@@ -7,7 +7,7 @@ import { LostItemsListComponent } from './pages/LostItem/lost-item-list.componen
 import { CreateLostItemComponent } from './pages/LostItem/create-lost-item.component'; // Importa el componente para crear elementos perdidos
 import { LostItemDetailComponent } from './pages/LostItem/lost-item-detail.component'; // Importa el componente para los detalles del objeto perdido
 import { UserProfileComponent } from './pages/dashboard/user-profile.component';
-
+import { ReceivedRatingsComponent } from './pages/dashboard/received-ratings.component';
 
 const routes: Routes = [
   {
@@ -42,6 +42,10 @@ const routes: Routes = [
       {
         path: 'user-profile', // Ruta para el perfil de usuario
         component: UserProfileComponent // Componente para el perfil de usuario
+      },
+      {
+        path: 'received-ratings', // Ruta para el perfil de usuario
+        component: ReceivedRatingsComponent // Componente para el perfil de usuario
       }
     ]
   }

@@ -21,6 +21,7 @@
   }
   
   input[type="text"],
+ 
   textarea {
     width: 100%;
     padding: 10px;
@@ -38,37 +39,21 @@
     border-radius: 4px;
     cursor: pointer;
   }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .rating {
-    font-size: 24px; /* Tamaño de las estrellas */
-  }
-  
-  .star {
-    color: #ccc; /* Color de las estrellas vacías */
-    cursor: pointer; /* Cambia el cursor a una mano */
-  }
-  
-  .star.filled {
-    color: #ffbb00; /* Color de las estrellas llenas */
-  }
-  
-  .user-info p {
-    margin: 0;
-  }
-  
-  .rating {
-    margin-top: 10px;
-  }
-  
-  .rating .star {
-    font-size: 20px;
-  }
-  
-  .rating .star.filled {
-    color: gold;
-  }
-  
+  .rating-card {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.rating-info {
+    padding: 5px;
+}
+
+.rating-info p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+/* Estilos adicionales según sea necesario */

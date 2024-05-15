@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Valoraciones Recibidas</h2>
+  <div *ngIf="receivedRatings.length > 0; else noRatings">
+    <div class="rating-card" *ngFor="let rating of receivedRatings">
+      <div class="rating-info">
+        <p><strong>Usuario que valoró:</strong> {{ rating.usuarioQueValora.nombre }}</p>
+        <p><strong>Puntaje:</strong> {{ rating.puntaje }}</p>
+        <p><strong>Comentario:</strong> {{ rating.comentario }}</p>
+        <p><strong>Fecha:</strong> {{ rating.fecha | date: 'dd/MM/yyyy' }}</p> <!-- Formato español -->
+      </div>
+    </div>
+  </div>
+  <ng-template #noRatings>
+    <p>No hay valoraciones recibidas.</p>
+  </ng-template>
+</div>
