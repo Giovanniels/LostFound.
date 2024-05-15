@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/found-items']); // Ruta para objetos encontrados
   }
 
-  navigateToAccountManagement(): void {
-    this.router.navigate(['/account']); // Ruta para gestión de cuenta
+  navigateToUserProfile(): void {
+    this.router.navigate(['/user-profile']); // Ruta para el perfil del usuario
   }
 }

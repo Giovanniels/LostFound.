@@ -85,7 +85,8 @@ async function getUsuarioById(req, res) {
 async function updateUsuario(req, res) {
     try {
         const { id } = req.params;
-        const usuario = await UsuarioService.updateUsuario(id, req.body);
+        const { nuevaContraseña, ...userData } = req.body; // Extraer nuevaContraseña del body
+        const usuario = await UsuarioService.updateUsuario(id, userData, nuevaContraseña); // Pasar nuevaContraseña al servicio
         usuario === null
         ? respondError(
             req,
@@ -101,6 +102,8 @@ async function updateUsuario(req, res) {
         respondError(req, res, 500, "No se pudo actualizar el usuario");
     }
 }
+
+
 
 
 async function deleteUsuario(req, res) {

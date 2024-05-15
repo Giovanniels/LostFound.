@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>Perfil de Usuario</h2>
+  <div *ngIf="loggedInUser">
+    <p><strong>Nombre:</strong> {{ loggedInUser.nombre }}</p>
+    <p><strong>Email:</strong> {{ loggedInUser.email }}</p>
+    <!-- Mostrar formulario para cambiar la contraseña -->
+    <form (submit)="changePassword()">
+      <div class="form-group">
+        <label for="newPassword">Nueva Contraseña:</label>
+        <input type="text" id="newPassword" name="newPassword" [(ngModel)]="newPassword" class="form-control">
+      </div>
+      <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+    </form>
+    <!-- Puedes mostrar más información del usuario aquí según sea necesario -->
+  </div>
+</div>

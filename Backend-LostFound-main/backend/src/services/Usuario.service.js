@@ -15,12 +15,17 @@ async function getUsuarios() {
 
 async function createUsuario(usuario) {
     try {
-        const { nombre, email, contrasenaTemporal } = usuario;
+        // Validar los datos del usuario utilizando usuarioBodySchema
+        const { error, value } = usuarioBodySchema.validate(usuario);
+        if (error) {
+            throw new Error(`Error en los datos del usuario: ${error.message}`);
+        }
 
-        const usuarioFound = await Usuario.findOne({ email: usuario.email });
+        const { nombre, email, contrasenaTemporal } = value; // Obtener los datos validados
+
+        const usuarioFound = await Usuario.findOne({ email });
         if (usuarioFound) return null;
 
-        // Cifra la contraseña temporal antes de guardarla en la base de datos
         const hashContrasenaTemporal = await bcrypt.hash(contrasenaTemporal, 10);
 
         const newUsuario = new Usuario({ nombre, email, contrasenaTemporal: hashContrasenaTemporal });
@@ -38,13 +43,19 @@ async function getUsuarioById(id) {
     }
 }
 
-async function updateUsuario(id, usuario) {
+async function updateUsuario(id, userData, nuevaContraseña) {
     try {
-        return await Usuario.findByIdAndUpdate(id, usuario);
+        if (nuevaContraseña) {
+            // Si hay una nueva contraseña, cifra la nueva contraseña antes de actualizarla
+            userData.contrasenaTemporal = await bcrypt.hash(nuevaContraseña, 10);
+            userData.contraseñaCambiada = true; // Establece el campo contraseñaCambiada en true
+        }
+        return await Usuario.findByIdAndUpdate(id, userData, { new: true }); // Asegúrate de devolver el usuario actualizado
     } catch (error) {
         handleError(error, "Usuario.service -> updateUsuario");
     }
 }
+
 
 async function deleteUsuario(id) {
     try {

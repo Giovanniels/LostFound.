@@ -17,6 +17,7 @@ import { AuthService } from './pages/services/auth.service'; // Importa el AuthS
 import { CommonModule } from '@angular/common'; // Importa CommonModule
 import { LostItemDetailComponent } from './pages/LostItem/lost-item-detail.component'; // Importa LostItemDetailComponent
 import { RatingModule } from 'ngx-bootstrap/rating'; // Importa RatingModule desde ngx-bootstrap
+import { UserProfileComponent } from './pages/dashboard/user-profile.component'; // Importa UserProfileComponent
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { RatingModule } from 'ngx-bootstrap/rating'; // Importa RatingModule des
     DashboardComponent,
     CreateLostItemComponent,
     LostItemsListComponent,
-    LostItemDetailComponent // Agrega LostItemDetailComponent aquí
+    LostItemDetailComponent, // Agrega LostItemDetailComponent aquí
+    UserProfileComponent // Agrega UserProfileComponent aquí
   ],
   imports: [
     CommonModule,

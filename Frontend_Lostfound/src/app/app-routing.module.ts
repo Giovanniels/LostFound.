@@ -6,6 +6,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LostItemsListComponent } from './pages/LostItem/lost-item-list.component';
 import { CreateLostItemComponent } from './pages/LostItem/create-lost-item.component'; // Importa el componente para crear elementos perdidos
 import { LostItemDetailComponent } from './pages/LostItem/lost-item-detail.component'; // Importa el componente para los detalles del objeto perdido
+import { UserProfileComponent } from './pages/dashboard/user-profile.component';
+
 
 const routes: Routes = [
   {
@@ -36,6 +38,10 @@ const routes: Routes = [
       {
         path: 'lost-item-detail/:id', // Ruta para los detalles de un objeto perdido específico
         component: LostItemDetailComponent // Componente para mostrar los detalles del objeto perdido
+      },
+      {
+        path: 'user-profile', // Ruta para el perfil de usuario
+        component: UserProfileComponent // Componente para el perfil de usuario
       }
     ]
   }
