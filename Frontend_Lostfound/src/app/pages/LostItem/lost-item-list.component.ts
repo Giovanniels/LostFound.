@@ -12,6 +12,8 @@ export class LostItemsListComponent implements OnInit {
   tipo: string = '';
   errorMessage: string = '';
   previousState: any[] = [];
+  currentPage: number = 1; // Página actual
+  itemsPerPage: number = 12; // Cantidad de elementos por página
 
   constructor(private lostItemsService: LostItemsService, private router: Router) { }
 
@@ -34,6 +36,62 @@ export class LostItemsListComponent implements OnInit {
     });
   }
 
+  goBackprincipal(): void {
+    this.router.navigate(['/lost-items']); // Cambia la ruta según tu estructura de enrutamiento
+  }
+
+  // Función para calcular el índice del último elemento en la página actual
+  getLastIndex(): number {
+    return this.currentPage * this.itemsPerPage;
+  }
+
+  // Función para navegar a la página anterior
+  goToPreviousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  // Función para navegar a la página siguiente
+  goToNextPage(): void {
+    const totalPages = Math.ceil(this.lostItems.length / this.itemsPerPage);
+    if (this.currentPage < totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  // Función para navegar a una página específica
+  goToPage(pageNumber: number): void {
+    this.currentPage = pageNumber;
+  }
+
+  // Función para determinar si mostrar el botón de página anterior
+  showPreviousButton(): boolean {
+    return this.currentPage > 1;
+  }
+
+  // Función para determinar si mostrar el botón de página siguiente
+  showNextButton(): boolean {
+    const totalPages = Math.ceil(this.lostItems.length / this.itemsPerPage);
+    return this.currentPage < totalPages;
+  }
+
+  // Función para obtener el total de páginas
+  getTotalPages(): number[] {
+    const totalPages = Math.ceil(this.lostItems.length / this.itemsPerPage);
+    return Array(totalPages).fill(0).map((x, i) => i + 1);
+  }
+
+  // Método para obtener las filas de elementos
+  getRows(): any[] {
+    const rows = [];
+    for (let i = 0; i < this.lostItems.length; i += 3) {
+      rows.push(this.lostItems.slice(i, i + 3));
+    }
+    return rows;
+  }
+
+  
   getImageUrl(item: any): string {
     if (!item || !item.imagen || typeof item.imagen !== 'string') {
       return ''; // Devuelve una cadena vacía si no hay imagen o la URL no es una cadena

@@ -1,44 +1,55 @@
+<!-- dashboard.component.html -->
+
 <div class="dashboard-page">
   <!-- Aquí va todo el contenido del dashboard -->
-  <h1>Categorias</h1>
+  <h1>Categorías</h1>
 
-  
   <!-- Botones de Navegación -->
   <div class="navigation-buttons">
-    <button [routerLink]="['/lost-items']">Objetos Perdidos</button>
-    <button (click)="navigateToFoundItems()">Objetos Encontrados</button>
+    <button [routerLink]="['/lost-items']">
+      <i class="fas fa-search"></i> Objetos Perdidos
+    </button>
+    <button (click)="navigateToFoundItems()">
+      <i class="fas fa-handshake"></i> Objetos Encontrados
+    </button>
   </div>
 
-  <!-- Información del Sitio -->
-  <div class="site-info">
-    <h2>Bienvenidos! LostFound te ofrece la oportunidad de buscar un objecto perdido y publicar un objecto encontrado en nuestra comunidad universitaria</h2>
-    <p>En LostFound puedes realizar publicaciones para un objectos encontrados o perdidos,el proceso es sencillo solo debese ingresar a la seccion de objectos perdidos o objectos encontrados, luego selecccionar la opcion de crear nueva publicacion, ingresar informacion relevante sobre el objecto, agregar fotos, tus datos de contacto si es necesario y listo!.</p>
+<!-- dashboard.component.html -->
+<div class="main-functionalities">
+<div class="site-info">
+  <div class="info-container">
+    <div class="info-text">
+      <h2>Bienvenidos! LostFound te ofrece la oportunidad de buscar un objeto perdido y publicar un objeto encontrado en nuestra comunidad universitaria</h2>
+      <p>En LostFound puedes realizar publicaciones respecto a objetos perdidos o encontrados, el proceso es sencillo solo debes ingresar a la sección de objetos perdidos o objetos encontrados, luego seleccionar la opción crear nueva publicación, ingresar información relevante sobre el objeto, agregar fotos, tus datos de contacto si es necesario y listo!.</p>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Funcionalidades -->
+  <div class="main-functionalities">
+    <div class="info-container">
+      <i class="fas fa-search"></i>
+      <h2>Filtro de busqueda</h2>
+      <p>También puedes buscar un objeto encontrado en Lostfound con el filtro de búsqueda especializado ingresando su categoría.</p>
+    </div>
   </div>
 
   <!-- Funcionalidades -->
   <div class="main-functionalities">
-    <h2>Buscar publicaciones en Lostfound</h2>
-   
-      <p>Tambien puedes buscar un objecto encontrado en Lostfound con el filtro de busqueda de busqueda especializado ingresando su categoria.</p>
-      <!-- Agrega más funcionalidades según sea necesario -->
-   
+    <div class="info-container">
+      <i class="fas fa-user-cog"></i>
+      <h2>Gestión de cuenta</h2>
+      <p>Si deseas modificar tu perfil debes ingresar al apartado de gestión de cuenta. Se recomienda cambiar la clave temporal por una clave propia para mayor seguridad.</p>
+    </div>
   </div>
 
   <!-- Funcionalidades -->
   <div class="main-functionalities">
-    <h2>Gestion de cuenta</h2>
-   
-      <p>Si deseas modificar tu perfil debes ingresar al apartado de gestion de cuenta.Se recomienda cambiar la clave temporal por una clave propia para mayor seguridad.</p>
-      <!-- Agrega más funcionalidades según sea necesario -->
-   
+    <div class="info-container">
+      <i class="fas fa-star"></i>
+      <h2>Valoración de usuarios</h2>
+      <p>La página LostFound permitirá crear una valoración a un usuario que realiza una publicación, la valoración es de 1 a 5 estrellas. Si la persona tiene una valoración promedio menor a 3 estrellas, la persona no podrá publicar durante un mes en la página web, esto está implementado para que las personas no realicen publicaciones falsas y mejorar la confiabilidad del sitio web.</p>
+    </div>
   </div>
-
-  <!-- Funcionalidades -->
-  <div class="main-functionalities">
-    <h2>Valoracion de usuarios</h2>
-   
-      <p>La pagina LostFound permitira crear un valoracion a un usuario que realiza un publicacion, la valoracion es de 1 a 5 estrellas.Si la persona tiene una valoracion promedio menor a 3 estrellas la persona no podra publicar durante un mes en la pagina web, esto esta implementado para que las personas no realizen publicaciones falsas y mejorar la confiabilidad del sitio web.</p>
-      <!-- Agrega más funcionalidades según sea necesario -->
-   
-  </div>
-
+</div>

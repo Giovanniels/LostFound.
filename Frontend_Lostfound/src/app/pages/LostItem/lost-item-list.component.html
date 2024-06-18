@@ -1,30 +1,40 @@
 <div class="container">
     <h2>Lista de Objetos Perdidos</h2>
     <!-- Agregar un formulario de búsqueda por tipo -->
-    <form (submit)="searchByType()">
-        <label for="tipo">Buscar por Tipo:</label>
-        <input type="text" id="tipo" [(ngModel)]="tipo" name="tipo">
+    <form class="search-form" (submit)="searchByType()">
+        <input type="text" id="tipo" [(ngModel)]="tipo" name="tipo" placeholder="Buscar por Tipo...">
         <button type="submit">Buscar</button>
     </form>
-    <button (click)="loadUserLostItems()">Historial de Publicaciones</button> <!-- Nuevo botón -->
-    <button (click)="navigateToCreateLostItem()">Crear Publicación</button>
-    <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
+    <div class="actions">
+        <button class="action-button" (click)="loadUserLostItems()">Historial de Publicaciones</button>
+        <button class="action-button" (click)="navigateToCreateLostItem()">Crear Publicación</button>
+        <button class="action-button" (click)="goBack()">Volver Atrás</button>
     </div>
-    <button (click)="goBack()">Volver Atrás</button> <!-- Botón para volver atrás -->
-    <ul *ngIf="!errorMessage">
-        <li *ngFor="let item of lostItems">
-            <img [src]="item.imagen" alt="Imagen del objeto perdido">
-            <p><strong>Fecha:</strong> {{ item.fecha | date:'yyyy-MM-dd' }}</p>
-            <!-- Mostrar el nombre del tipo -->
-            <p><strong>Tipo:</strong> {{ item.tipo.nombre }}</p>
-            <p><strong>Descripción:</strong> {{ item.descripcion }}</p>
-            <p><strong>Detalles:</strong> {{ item.detalles }}</p>
-            <p><strong>Ubicación:</strong> {{ item.ubicacion }}</p>
-            <p><strong>Información de Contacto:</strong> {{ item.informacionContacto }}</p>
-            <button (click)="navigateToLostItemDetail(item._id)">Detalles</button>
-
-
-        </li>
-    </ul>
+    
+    <div class="item-container">
+        <div class="item" *ngFor="let item of lostItems.slice((currentPage - 1) * itemsPerPage, getLastIndex())">
+            <div class="image-container">
+                <img [src]="item.imagen" alt="Imagen del objeto perdido" class="lost-item-image">
+            </div>
+            <div class="item-details">
+                <p><strong>Fecha:</strong> {{ item.fecha | date:'yyyy-MM-dd' }}</p>
+                <p><strong>Tipo:</strong> {{ item.tipo.nombre }}</p>
+                <p><strong>Descripción:</strong> {{ item.descripcion }}</p>
+                <p><strong>Detalles:</strong> {{ item.detalles }}</p>
+                <p><strong>Ubicación:</strong> {{ item.ubicacion }}</p>
+                <p><strong>Información de Contacto:</strong> {{ item.informacionContacto }}</p>
+            </div>
+            <button class="detail-button" (click)="navigateToLostItemDetail(item._id)">Detalles</button>
+        </div>
+    </div>
+    <!-- Agregar la paginación -->
+    <div class="pagination-container">
+        <button class="pagination-button" (click)="goToPreviousPage()" *ngIf="showPreviousButton()">Anterior</button>
+        <div class="page-numbers">
+            <div *ngFor="let page of getTotalPages()">
+                <button class="page-number" [class.active]="page === currentPage" (click)="goToPage(page)">{{ page }}</button>
+            </div>
+        </div>
+        <button class="pagination-button" (click)="goToNextPage()" *ngIf="showNextButton()">Siguiente</button>
+    </div>
 </div>

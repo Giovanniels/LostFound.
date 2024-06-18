@@ -1,78 +1,82 @@
 .container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
-  
-  h2 {
-    text-align: center;
-  }
-  
-  .form-group {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  .rating {
-    font-size: 24px; /* Tamaño de las estrellas */
-  }
-  
-  .star {
-    color: #ccc; /* Color de las estrellas vacías */
-    cursor: pointer; /* Cambia el cursor a una mano */
-  }
-  
-  .star.filled {
-    color: #ffbb00; /* Color de las estrellas llenas */
-  }
-  
-  .user-info p {
-    margin: 0;
-  }
-  
-  .rating {
-    margin-top: 10px;
-  }
-  
-  .rating .star {
-    font-size: 20px;
-  }
-  
-  .rating .star.filled {
-    color: gold;
-  }
-  
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+h2 {
+  text-align: center;
+}
+
+.user-info {
+  margin-bottom: 20px;
+}
+
+.user-info p {
+  margin: 0;
+}
+
+.user-rating {
+  margin-top: 10px;
+}
+
+.change-password {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 40px; /* Agregamos margen superior */
+}
+
+.change-password h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea,
+input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.rating {
+  font-size: 24px;
+}
+
+.star {
+  color: #ccc;
+  cursor: pointer;
+}
+
+.star.filled {
+  color: #ffbb00;
+}

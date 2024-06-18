@@ -26,4 +26,8 @@ export class DashboardComponent implements OnInit {
   navigateToUserProfile(): void {
     this.router.navigate(['/user-profile']); // Ruta para el perfil del usuario
   }
+
+  navigateToDashboard(): void {
+    this.router.navigate(['/dashboard']); // Ruta para el perfil del usuario
+  }
 }

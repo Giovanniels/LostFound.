@@ -1,14 +1,24 @@
 <div class="container">
   <h2>Detalles del Objeto Perdido</h2>
-  <div *ngIf="lostItem">
-    <img [src]="lostItem.imagen" alt="Imagen del objeto perdido">
-    <p><strong>Fecha:</strong> {{ lostItem.fecha | date:'yyyy-MM-dd' }}</p>
-    <p><strong>Tipo:</strong> {{ lostItem.tipo.nombre }}</p>
-    <p><strong>Descripción:</strong> {{ lostItem.descripcion }}</p>
-    <p><strong>Detalles:</strong> {{ lostItem.detalles }}</p>
-    <p><strong>Ubicación:</strong> {{ lostItem.ubicacion }}</p>
-    <p><strong>Información de Contacto:</strong> {{ lostItem.informacionContacto }}</p>
-    
+  <div class="card">
+    <div *ngIf="lostItem">
+      <img [src]="lostItem.imagen" alt="Imagen del objeto perdido">
+      <p><strong>Fecha:</strong> {{ lostItem.fecha | date:'yyyy-MM-dd' }}</p>
+      <p><strong>Tipo:</strong> {{ lostItem.tipo.nombre }}</p>
+      <p><strong>Descripción:</strong> {{ lostItem.descripcion }}</p>
+      <p><strong>Detalles:</strong> {{ lostItem.detalles }}</p>
+      <p><strong>Ubicación:</strong> {{ lostItem.ubicacion }}</p>
+      <p><strong>Información de Contacto:</strong> {{ lostItem.informacionContacto }}</p>
+    </div>
+    <div *ngIf="!lostItem">
+      <p>El objeto perdido no se ha encontrado.</p>
+    </div>
+  </div>
+  <a href="javascript:void(0);" (click)="goBack()" class="back-button">&#9664; Volver Atrás</a>
+</div>
+
+<div class="container">
+  <div class="card">
     <div *ngIf="user">
       <h3>Usuario que realizó la publicación:</h3>
       <p><strong>Nombre:</strong> {{ user.nombre }}</p>
@@ -21,26 +31,25 @@
         <span class="star" [class.filled]="rating >= 4">&#9733;</span>
         <span class="star" [class.filled]="rating >= 5">&#9733;</span>
       </div>
-      <div class="user-feedback">
-        <form (submit)="rateUser(user._id)">
-          <h3>Valorar usuario:</h3>
-          <label for="rating">Puntuación:</label>
-          <div class="rating">
-            <span class="star" [class.filled]="selectedStars >= 1" (click)="selectedStars = 1">&#9733;</span>
-            <span class="star" [class.filled]="selectedStars >= 2" (click)="selectedStars = 2">&#9733;</span>
-            <span class="star" [class.filled]="selectedStars >= 3" (click)="selectedStars = 3">&#9733;</span>
-            <span class="star" [class.filled]="selectedStars >= 4" (click)="selectedStars = 4">&#9733;</span>
-            <span class="star" [class.filled]="selectedStars >= 5" (click)="selectedStars = 5">&#9733;</span>
-          </div>
-          <label for="comentario">Comentario:</label>
-          <textarea id="comentario" name="comentario" [(ngModel)]="comentario"></textarea>
-          <button type="submit">Valorar Usuario</button>
-        </form>
-      </div>
     </div>
   </div>
-  <div *ngIf="!lostItem">
-    <p>El objeto perdido no se ha encontrado.</p>
-    <button (click)="goBack()">Volver Atrás</button>
+
+  <div class="card">
+    <div class="user-feedback" *ngIf="user">
+      <form (submit)="rateUser(user._id)">
+        <h3>Valorar usuario:</h3>
+        <label for="rating">Puntuación:</label>
+        <div class="rating">
+          <span class="star" [class.filled]="selectedStars >= 1" (click)="selectedStars = 1">&#9733;</span>
+          <span class="star" [class.filled]="selectedStars >= 2" (click)="selectedStars = 2">&#9733;</span>
+          <span class="star" [class.filled]="selectedStars >= 3" (click)="selectedStars = 3">&#9733;</span>
+          <span class="star" [class.filled]="selectedStars >= 4" (click)="selectedStars = 4">&#9733;</span>
+          <span class="star" [class.filled]="selectedStars >= 5" (click)="selectedStars = 5">&#9733;</span>
+        </div>
+        <label for="comentario">Comentario:</label>
+        <textarea id="comentario" name="comentario" [(ngModel)]="comentario"></textarea>
+        <button type="submit">Valorar Usuario</button>
+      </form>
+    </div>
   </div>
 </div>

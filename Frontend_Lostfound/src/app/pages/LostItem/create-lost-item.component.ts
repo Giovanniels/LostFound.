@@ -46,6 +46,10 @@ export class CreateLostItemComponent implements OnInit {
     return this.createLostItemForm.get('tipo');
   }
 
+  goBack(): void {
+    this.router.navigate(['/lost-items']); // Cambia la ruta según tu estructura de enrutamiento
+  }
+
   onSubmit(): void {
     if (this.createLostItemForm.invalid) {
       return;

@@ -1,0 +1,21 @@
+/* layout.component.css */
+
+.navbar {
+  background-color: rgba(0, 0, 255, 0.5); /* Fondo azul transparente */
+}
+
+.navbar-nav .nav-link {
+  color: white; /* Texto blanco */
+}
+
+.navbar-nav {
+  margin-left: auto; /* Mover los botones hacia la derecha */
+}
+
+.navbar-brand {
+  color: white; /* Texto blanco */
+}
+
+.navbar .btn {
+  color: white; /* Texto blanco */
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ValoracionService } from '../dashboard/valoracion.service';
+import {  Router } from '@angular/router';
 
 // Definir una interfaz para el objeto de datos que recibimos del servidor
 interface ValoracionesResponse {
@@ -16,11 +17,17 @@ interface ValoracionesResponse {
 export class ReceivedRatingsComponent implements OnInit {
   receivedRatings: any[] = [];
 
-  constructor(private valoracionService: ValoracionService) { }
+  constructor(private valoracionService: ValoracionService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     // Obtener las valoraciones recibidas por el usuario al iniciar el componente
     this.obtenerValoracionesRecibidas();
+  }
+
+  goBack(): void {
+    this.router.navigate(['/user-profile']); // Cambia la ruta según tu estructura de enrutamiento
   }
 
   obtenerValoracionesRecibidas() {

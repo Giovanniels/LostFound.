@@ -33,6 +33,10 @@ export class UserProfileComponent implements OnInit {
     }
   }
 
+  goBack(): void {
+    this.router.navigate(['/dashboard']); // Cambia la ruta según tu estructura de enrutamiento
+  }
+
   loadUserData(userId: string): void {
     this.userService.getUserById(userId).subscribe({
       next: (userResponse: any) => {

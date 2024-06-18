@@ -1,27 +1,35 @@
 <div class="container">
+  <div class="back-button">
+    <a href="javascript:void(0);" (click)="goBack()" class="back-button">&#9664; Volver Atrás</a>
+</div>
   <h2>Perfil de Usuario</h2>
   <div *ngIf="loggedInUser">
-    <p><strong>Nombre:</strong> {{ loggedInUser.nombre }}</p>
-    <p><strong>Email:</strong> {{ loggedInUser.email }}</p>
-    <!-- Mostrar promedio de valoraciones como estrellas -->
-    <div class="user-rating">
-      <p><strong>Valoración Usuario:</strong> {{ averageRating }}/5</p>
-      <span class="star" [class.filled]="averageRating >= 1">&#9733;</span>
-      <span class="star" [class.filled]="averageRating >= 2">&#9733;</span>
-      <span class="star" [class.filled]="averageRating >= 3">&#9733;</span>
-      <span class="star" [class.filled]="averageRating >= 4">&#9733;</span>
-      <span class="star" [class.filled]="averageRating >= 5">&#9733;</span>
-    </div>
-    <!-- Botón para mostrar las valoraciones recibidas -->
-    <button type="button" class="btn btn-primary" (click)="showReceivedRatings()">Mostrar Valoraciones Recibidas</button>
-    <!-- Mostrar formulario para cambiar la contraseña -->
-    <form (submit)="changePassword()">
-      <div class="form-group">
-        <label for="newPassword">Nueva Contraseña:</label>
-        <input type="text" id="newPassword" name="newPassword" [(ngModel)]="newPassword" class="form-control">
+    <div class="user-info">
+      <p><strong>Nombre:</strong> {{ loggedInUser.nombre }}</p>
+      <p><strong>Email:</strong> {{ loggedInUser.email }}</p>
+      <div class="user-rating">
+        <p><strong>Valoración Usuario:</strong> {{ averageRating }}/5</p>
+        <span class="star" [class.filled]="averageRating >= 1">&#9733;</span>
+        <span class="star" [class.filled]="averageRating >= 2">&#9733;</span>
+        <span class="star" [class.filled]="averageRating >= 3">&#9733;</span>
+        <span class="star" [class.filled]="averageRating >= 4">&#9733;</span>
+        <span class="star" [class.filled]="averageRating >= 5">&#9733;</span>
       </div>
-      <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
-    </form>
-    <!-- Puedes mostrar más información del usuario aquí según sea necesario -->
+    </div>
+    <button type="button" class="btn btn-primary" (click)="showReceivedRatings()">
+      <i class="fas fa-star"></i> Mostrar Valoraciones Recibidas
+    </button>
+  </div>
+  <div class="change-password">
+    <div class="password-form-container">
+      <h3><i class="fas fa-key"></i> Cambiar Contraseña</h3>
+      <form (submit)="changePassword()">
+        <div class="form-group">
+          <label for="newPassword">Nueva Contraseña:</label>
+          <input type="password" id="newPassword" name="newPassword" [(ngModel)]="newPassword" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Cambiar Contraseña</button>
+      </form>
+    </div>
   </div>
 </div>

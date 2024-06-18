@@ -1,37 +1,46 @@
-<div>
+<div class="container">
+  <div class="back-button">
+      <a href="javascript:void(0);" (click)="goBack()" class="back-button">&#9664; Volver Atrás</a>
+  </div>
   <h2>Crear Nuevo Objeto Perdido</h2>
   <form *ngIf="createLostItemForm" [formGroup]="createLostItemForm" (ngSubmit)="onSubmit()">
-    <div>
+    <div class="form-group">
       <label for="tipo">Tipo:</label>
       <select formControlName="tipo" id="tipo">
         <option *ngFor="let tipo of tipos" [value]="tipo._id">{{ tipo.nombre }}</option>
         <option value="otro">Otro</option> <!-- Agregar la opción "Otro" -->
       </select>
     </div>
-    <div *ngIf="tipoControl && tipoControl.value === 'otro'">
+    <div *ngIf="tipoControl && tipoControl.value === 'otro'" class="form-group">
       <label for="nuevoTipo">Nuevo Tipo:</label>
       <input type="text" formControlName="nuevoTipo" id="nuevoTipo">
     </div>
-    <div>
+    <div class="form-group">
       <label for="descripcion">Descripción:</label>
       <textarea formControlName="descripcion" id="descripcion"></textarea>
     </div>
-    <div>
+    <div class="form-group">
       <label for="detalles">Detalles:</label>
       <textarea formControlName="detalles" id="detalles"></textarea>
     </div>
-    <div>
+    <div class="form-group">
       <label for="ubicacion">Ubicación:</label>
       <input type="text" formControlName="ubicacion" id="ubicacion">
     </div>
-    <div>
+    <div class="form-group">
       <label for="informacionContacto">Información de Contacto:</label>
       <textarea formControlName="informacionContacto" id="informacionContacto"></textarea>
     </div>
-    <div>
+    <div class="form-group">
       <label for="imagen">Imagen:</label>
-      <input type="file" name="imagen" #imageFileInput (change)="onImageSelected($event)">
+      <div class="file-input-wrapper">
+        <input type="file" name="imagen" #imageFileInput (change)="onImageSelected($event)">
+        <i class="fas fa-camera"></i>
+        <span>Seleccionar archivo</span>
+        <i class="fas fa-upload"></i>
+      </div>
     </div>
+    
     <button type="submit">Crear</button>
   </form>
 </div>

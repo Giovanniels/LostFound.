@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="back-button">
+    <a href="javascript:void(0);" (click)="goBack()" class="back-button">&#9664; Volver Atrás</a>
+</div>
   <h2>Valoraciones Recibidas</h2>
   <div *ngIf="receivedRatings.length > 0; else noRatings">
     <div class="rating-card" *ngFor="let rating of receivedRatings">
