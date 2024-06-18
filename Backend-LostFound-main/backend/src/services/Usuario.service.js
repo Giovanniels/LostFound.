@@ -15,17 +15,12 @@ async function getUsuarios() {
 
 async function createUsuario(usuario) {
     try {
-        // Validar los datos del usuario utilizando usuarioBodySchema
-        const { error, value } = usuarioBodySchema.validate(usuario);
-        if (error) {
-            throw new Error(`Error en los datos del usuario: ${error.message}`);
-        }
+        const { nombre, email, contrasenaTemporal } = usuario;
 
-        const { nombre, email, contrasenaTemporal } = value; // Obtener los datos validados
-
-        const usuarioFound = await Usuario.findOne({ email });
+        const usuarioFound = await Usuario.findOne({ email: usuario.email });
         if (usuarioFound) return null;
 
+        // Cifra la contraseña temporal antes de guardarla en la base de datos
         const hashContrasenaTemporal = await bcrypt.hash(contrasenaTemporal, 10);
 
         const newUsuario = new Usuario({ nombre, email, contrasenaTemporal: hashContrasenaTemporal });
