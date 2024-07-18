@@ -12,6 +12,16 @@ h2 {
   text-align: center;
 }
 
+.default-image {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.default-image img {
+  width: 100px; /* Ajusta según tus necesidades */
+  height: auto;
+}
+
 /* Estilos para el formulario de búsqueda */
 .search-form {
   display: flex;
@@ -55,8 +65,9 @@ h2 {
 /* Estilos para el contenedor de elementos de la lista */
 .item-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ajusta el tamaño */
   gap: 20px;
+  justify-content: center; /* Centra el contenido */
 }
 
 /* Estilos para los elementos de la lista */
@@ -69,18 +80,21 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative; /* Agregamos posición relativa para que el botón tenga referencia */
+  padding: 20px;
+  min-height: 300px; /* Asegura una altura mínima */
 }
 
 /* Estilos para las imágenes de los objetos perdidos */
 .image-container {
-  height: 250px; /* Altura fija para las imágenes */
+  height: 200px; /* Altura fija para las imágenes */
   overflow: hidden;
 }
 
 .lost-item-image {
   width: 100%;
   height: auto;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 /* Estilos para los detalles de cada elemento */
@@ -98,6 +112,7 @@ h2 {
   border-top: 1px solid #ccc;
   border-radius: 0 0 5px 5px;
   cursor: pointer;
+  margin-top: auto; /* Empuja el botón hacia abajo */
 }
 
 .detail-button:hover {
@@ -105,61 +120,6 @@ h2 {
 }
 
 /* Estilos para el paginador */
-.pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.page-button {
-  padding: 10px 20px;
-  background-color: #A8D0E6;
-  color: #333;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 0 5px;
-}
-
-.page-button:hover {
-  background-color: #A8D0E6;
-}
-
-.page-info {
-  margin: 0 10px;
-}
-
-.item {
-    background-color: #f2f2f2;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.item {
-  flex: 0 0 calc(33.33% - 20px); /* Establece un ancho fijo para cada elemento */
-  background-color: #f2f2f2;
-  padding: 20px;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.item-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: space-between;
-}
-
-.lost-item-image {
-  max-width: 330px; /* Ancho máximo deseado */
-  max-height: 200px; /* Alto máximo deseado */
-
-
-}
-
-
 .pagination-container {
   display: flex;
   justify-content: center;
@@ -182,7 +142,9 @@ h2 {
 }
 
 .page-number.active {
-  background-color: #A8D0E6;
+  background-color: #e8e8ec;
+  color: #333;
+  font-weight: bold;
 }
 
 .pagination-button {
@@ -197,10 +159,4 @@ h2 {
 
 .pagination-button:hover {
   background-color: #A8D0E6;
-}
-
-.page-number.active {
-    background-color: #e8e8ec; /* Color de fondo para el botón activo */
-    color: #333; /* Color de texto para el botón activo */
-    font-weight: bold; /* Estilo de fuente en negrita para el botón activo */
 }

@@ -1,3 +1,18 @@
+.error {
+  color: red;
+  font-size: 0.9em;
+}
+
+.default-image {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.default-image img {
+  width: 100px; /* Ajusta según tus necesidades */
+  height: auto;
+}
+
 .container {
   max-width: 500px;
   margin: 0 auto;
@@ -5,6 +20,10 @@
   background-color: #f9f9f9;
   border: 1px solid #ddd;
   border-radius: 5px;
+}
+
+.leaflet-map {
+  height: 400px; /* Ajusta la altura según sea necesario */
 }
 
 h2 {
@@ -71,7 +90,6 @@ button:hover {
   vertical-align: middle;
 }
 
-/* Estilos para el nuevo botón "Volver Atrás" */
 .back-button {
   position: relative;
   margin-bottom: 20px; /* Separación del primer título */

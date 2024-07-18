@@ -23,12 +23,12 @@ async function createUsuario(req, res) {
         const { nombre, email } = req.body;
 
         // Verifica si el correo electrónico es válido
-        if (!/^[^\s@]+@alumnos.ubiobio.cl$/.test(email)) {
+        if (!/^[^\s@]+@(alumnos\.ubiobio\.cl|gmail\.com)$/.test(email)) {
             return respondError(
                 req,
                 res,
                 400,
-                "El correo electrónico debe pertenecer al dominio @alumnos.ubiobio.cl",
+                "El correo electrónico debe pertenecer al dominio @alumnos.ubiobio.cl o @gmail.com",
                 "Bad Request",
                 { message: "Por favor, ingrese una dirección de correo electrónico válida." }
             );

@@ -9,6 +9,27 @@
   position: relative;
 }
 
+.leaflet-map {
+  height: 400px; /* Ajusta la altura según sea necesario */
+}
+
+.error-message {
+  color: red; /* Cambia el color del texto a rojo */
+  margin-top: 10px; /* Espaciado superior */
+  font-weight: bold; /* Negrita */
+}
+
+
+.default-image {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.default-image img {
+  width: 100px; /* Ajusta según tus necesidades */
+  height: auto;
+}
+
 .card {
   padding: 20px;
   border: 1px solid #ddd;

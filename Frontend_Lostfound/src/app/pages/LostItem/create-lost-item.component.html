@@ -1,46 +1,65 @@
 <div class="container">
   <div class="back-button">
-      <a href="javascript:void(0);" (click)="goBack()" class="back-button">&#9664; Volver Atrás</a>
+    <a href="javascript:void(0);" (click)="goBack()" class="back-button">&#9664; Volver Atrás</a>
   </div>
   <h2>Crear Nuevo Objeto Perdido</h2>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
   <form *ngIf="createLostItemForm" [formGroup]="createLostItemForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <label for="tipo">Tipo:</label>
-      <select formControlName="tipo" id="tipo">
+      <select formControlName="tipo" id="tipo" (change)="onTipoChange()">
         <option *ngFor="let tipo of tipos" [value]="tipo._id">{{ tipo.nombre }}</option>
-        <option value="otro">Otro</option> <!-- Agregar la opción "Otro" -->
+        <option value="otro">Otro</option>
       </select>
+      <div *ngIf="tipoControl?.invalid && tipoControl?.touched" class="error">
+        Tipo es obligatorio.
+      </div>
     </div>
+
     <div *ngIf="tipoControl && tipoControl.value === 'otro'" class="form-group">
       <label for="nuevoTipo">Nuevo Tipo:</label>
       <input type="text" formControlName="nuevoTipo" id="nuevoTipo">
     </div>
+
     <div class="form-group">
       <label for="descripcion">Descripción:</label>
       <textarea formControlName="descripcion" id="descripcion"></textarea>
+      <div *ngIf="createLostItemForm.get('descripcion')?.invalid && createLostItemForm.get('descripcion')?.touched" class="error">
+        Descripción es obligatoria.
+      </div>
     </div>
+
     <div class="form-group">
       <label for="detalles">Detalles:</label>
       <textarea formControlName="detalles" id="detalles"></textarea>
     </div>
+
     <div class="form-group">
-      <label for="ubicacion">Ubicación:</label>
-      <input type="text" formControlName="ubicacion" id="ubicacion">
-    </div>
-    <div class="form-group">
-      <label for="informacionContacto">Información de Contacto:</label>
-      <textarea formControlName="informacionContacto" id="informacionContacto"></textarea>
-    </div>
-    <div class="form-group">
-      <label for="imagen">Imagen:</label>
-      <div class="file-input-wrapper">
-        <input type="file" name="imagen" #imageFileInput (change)="onImageSelected($event)">
-        <i class="fas fa-camera"></i>
-        <span>Seleccionar archivo</span>
-        <i class="fas fa-upload"></i>
+      <label for="ubicacion">Ubicación en el Mapa:</label>
+      <div #map style="height: 300px;"></div>
+      <div *ngIf="createLostItemForm.get('ubicacion')?.invalid && createLostItemForm.get('ubicacion')?.touched" class="error">
+        Ubicación es obligatoria.
+      </div>
+      <div *ngIf="!createLostItemForm.get('ubicacion')?.valid && errorMessage === null" class="error">
+        Se requiere una ubicación en el mapa.
       </div>
     </div>
-    
-    <button type="submit">Crear</button>
+
+    <div class="form-group">
+      <label for="informacionContacto">Información de Contacto:</label>
+      <input type="text" formControlName="informacionContacto" id="informacionContacto">
+    </div>
+
+    <div class="form-group">
+      <label for="imagen">Seleccionar Imagen:</label>
+      <input type="file" (change)="onImageSelected($event)">
+    </div>
+
+    <button type="submit" [disabled]="createLostItemForm.invalid">Crear Objeto Perdido</button>
   </form>
 </div>

@@ -92,10 +92,16 @@ async function createObjectoPerdido(req, res) {
     return respondError(req, res, 403, "No puedes publicar debido a un bajo promedio de valoraciones");
     
   } catch (error) {
+    // Manejo específico para error de tipo similar
+    if (error.message === 'El nuevo tipo es demasiado similar a uno existente.') {
+      return respondError(req, res, 400, error.message);
+    }
+
     handleError(error, "objectoPerdido.controller -> createObjectoPerdido");
-    respondError(req, res, 500, "No se pudo crear el objeto perdido");
+    return respondError(req, res, 500, "No se pudo crear el objeto perdido");
   }
 }
+
 
 
 

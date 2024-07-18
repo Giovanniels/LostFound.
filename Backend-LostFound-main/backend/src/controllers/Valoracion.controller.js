@@ -6,18 +6,23 @@ const ValoracionService = require("../services/Valoracion.service");
 
 async function crearValoracion(req, res) {
     try {
-        const { usuarioValorado, puntaje, comentario } = req.body;
+        const { usuarioValorado, usuarioQueValora, puntaje, comentario } = req.body;
 
         const usuarioValoradoExists = await Usuario.findById(usuarioValorado);
         if (!usuarioValoradoExists) {
             return res.status(404).json({ success: false, message: "El usuario que está siendo valorado no existe" });
         }
 
+        // Verifica que el usuario que valora no sea el mismo que el valorado
+        if (usuarioValorado === usuarioQueValora) {
+            return res.status(400).json({ success: false, message: "No puedes valorarte a ti mismo" });
+        }
+
         const nuevaValoracion = new Valoracion({
             usuarioValorado,
             puntaje,
             comentario,
-            usuarioQueValora: req.body.usuarioQueValora
+            usuarioQueValora
         });
 
         await nuevaValoracion.save();

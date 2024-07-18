@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LostItemsService } from './lost-item.service';
+import { LostItemsService, TipoService } from './lost-item.service';
 
 @Component({
   selector: 'app-lost-item-list',
@@ -9,23 +9,33 @@ import { LostItemsService } from './lost-item.service';
 })
 export class LostItemsListComponent implements OnInit {
   lostItems: any[] = [];
+  filteredItems: any[] = []; // Almacena los elementos filtrados
+  tipos: any[] = []; // Añade una propiedad para almacenar los tipos
   tipo: string = '';
   errorMessage: string = '';
   previousState: any[] = [];
   currentPage: number = 1; // Página actual
   itemsPerPage: number = 12; // Cantidad de elementos por página
 
-  constructor(private lostItemsService: LostItemsService, private router: Router) { }
+  constructor(
+    private lostItemsService: LostItemsService,
+    private tipoService: TipoService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.loadLostItems();
+    this.loadTipos(); // Carga los tipos al inicializar
   }
 
   loadLostItems(): void {
     this.lostItemsService.getLostItems().subscribe({
       next: (response: any) => {
         if (response.state === 'Success' && Array.isArray(response.data)) {
-          this.lostItems = response.data;
+          this.lostItems = response.data.sort((a: any, b: any) => 
+            new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
+          );
+          this.filteredItems = this.lostItems; // Inicialmente, todos los elementos son filtrados
         } else {
           console.error("La respuesta del servicio no es válida:", response);
         }
@@ -36,77 +46,80 @@ export class LostItemsListComponent implements OnInit {
     });
   }
 
-  goBackprincipal(): void {
-    this.router.navigate(['/lost-items']); // Cambia la ruta según tu estructura de enrutamiento
+  loadTipos(): void {
+    this.tipoService.getTipos().subscribe({
+      next: (response: any) => {
+        if (response.state === 'Success' && Array.isArray(response.data)) {
+          this.tipos = response.data; // Almacena los tipos
+        } else {
+          console.error("La respuesta del servicio de tipos no es válida:", response);
+        }
+      },
+      error: (error: any) => {
+        console.error("Error al obtener los tipos:", error);
+      }
+    });
   }
 
-  // Función para calcular el índice del último elemento en la página actual
+  goBackprincipal(): void {
+    this.router.navigate(['/lost-items']);
+  }
+
   getLastIndex(): number {
     return this.currentPage * this.itemsPerPage;
   }
 
-  // Función para navegar a la página anterior
   goToPreviousPage(): void {
     if (this.currentPage > 1) {
       this.currentPage--;
     }
   }
 
-  // Función para navegar a la página siguiente
   goToNextPage(): void {
-    const totalPages = Math.ceil(this.lostItems.length / this.itemsPerPage);
+    const totalPages = Math.ceil(this.filteredItems.length / this.itemsPerPage);
     if (this.currentPage < totalPages) {
       this.currentPage++;
     }
   }
 
-  // Función para navegar a una página específica
   goToPage(pageNumber: number): void {
     this.currentPage = pageNumber;
   }
 
-  // Función para determinar si mostrar el botón de página anterior
   showPreviousButton(): boolean {
     return this.currentPage > 1;
   }
 
-  // Función para determinar si mostrar el botón de página siguiente
   showNextButton(): boolean {
-    const totalPages = Math.ceil(this.lostItems.length / this.itemsPerPage);
+    const totalPages = Math.ceil(this.filteredItems.length / this.itemsPerPage);
     return this.currentPage < totalPages;
   }
 
-  // Función para obtener el total de páginas
   getTotalPages(): number[] {
-    const totalPages = Math.ceil(this.lostItems.length / this.itemsPerPage);
+    const totalPages = Math.ceil(this.filteredItems.length / this.itemsPerPage);
     return Array(totalPages).fill(0).map((x, i) => i + 1);
   }
 
-  // Método para obtener las filas de elementos
   getRows(): any[] {
     const rows = [];
-    for (let i = 0; i < this.lostItems.length; i += 3) {
-      rows.push(this.lostItems.slice(i, i + 3));
+    for (let i = 0; i < this.filteredItems.length; i += 3) {
+      rows.push(this.filteredItems.slice(i, i + 3));
     }
     return rows;
   }
 
-  
   getImageUrl(item: any): string {
+    const defaultImage = 'assets/default-icon.png';
     if (!item || !item.imagen || typeof item.imagen !== 'string') {
-      return ''; // Devuelve una cadena vacía si no hay imagen o la URL no es una cadena
+      return defaultImage;
     }
     
-    // Formatea la URL de la imagen para que coincida con la ubicación de almacenamiento en el servidor
-    const baseUrl = 'http://localhost:3001'; // URL base del servidor
-    const imagePath = item.imagen.replace(/\\/g, '/'); // Reemplaza todas las barras invertidas por barras normales
-    const imageUrl = `${baseUrl}/uploads/documents/${imagePath}`; // Combina la URL base con la ruta de la imagen
+    const baseUrl = 'http://localhost:3001';
+    const imagePath = item.imagen.replace(/\\/g, '/');
+    const imageUrl = `${baseUrl}/uploads/documents/${imagePath}`;
     
     return imageUrl;
   }
-  
-  
-  
 
   searchByType(): void {
     if (this.tipo.trim()) {
@@ -114,7 +127,8 @@ export class LostItemsListComponent implements OnInit {
       this.lostItemsService.searchLostItemsByType(this.tipo.trim()).subscribe({
         next: (response: any) => {
           if (response.success && Array.isArray(response.objetosPerdidos)) {
-            this.lostItems = response.objetosPerdidos;
+            this.filteredItems = response.objetosPerdidos; // Almacena los elementos filtrados
+            this.currentPage = 1; // Resetea a la primera página al buscar
           } else {
             console.error("La respuesta del servicio no es válida:", response);
           }
@@ -141,10 +155,12 @@ export class LostItemsListComponent implements OnInit {
             }
             this.lostItems = response.data;
             this.errorMessage = '';
+            this.filteredItems = response.data; // Actualiza los elementos filtrados
           } else {
             console.error("La respuesta del servicio no es válida:", response);
             this.errorMessage = "No se encontraron publicaciones para este usuario.";
             this.lostItems = [];
+            this.filteredItems = []; // Asegúrate de que los elementos filtrados estén vacíos
           }
         },
         error: (error: any) => {
@@ -161,11 +177,10 @@ export class LostItemsListComponent implements OnInit {
     this.loadLostItems();
   }
 
-
   navigateToLostItemDetail(itemId: string): void {
-    console.log('Item:', itemId); // Depuración: Registro del ID del objeto perdido
+    console.log('Item:', itemId);
     if (itemId) {
-      this.router.navigate(['/lost-item-detail', itemId]); // Navega a la página de detalles con el ID del objeto perdido
+      this.router.navigate(['/lost-item-detail', itemId]);
     } else {
       console.error("El ID del objeto perdido no está definido.");
     }
