@@ -24,7 +24,6 @@ async function getObjectoPerdidos(req, res) {
   }
 }
 
-
 async function buscarObjectoPerdidoPorTipo(req, res) {
   try {
     let tipo = req.params.tipo;
@@ -46,9 +45,6 @@ async function buscarObjectoPerdidoPorTipo(req, res) {
     res.status(500).json({ success: false, message: 'Error al buscar objetos perdidos.' });
   }
 }
-
-
-
 
 async function createObjectoPerdido(req, res) {
   try {
@@ -102,13 +98,6 @@ async function createObjectoPerdido(req, res) {
   }
 }
 
-
-
-
-
-
-
-
 async function getObjectoPerdidoById(req, res) {
   try {
     const { id } = req.params;
@@ -130,7 +119,6 @@ async function getObjectoPerdidoById(req, res) {
   }
 }
 
-
 async function updateObjectoPerdido(req, res) {
   try {
     const { id } = req.params;
@@ -144,7 +132,6 @@ async function updateObjectoPerdido(req, res) {
     respondError(req, res, 500, "No se pudo actualizar el objectoPerdido");
   }
 }
-
 
 async function deleteObjectoPerdido(req, res) {
   try {
@@ -201,8 +188,6 @@ async function getObjectoPerdidosByUserId(req, res) {
     respondError(req, res, 500, "No se pudo obtener las publicaciones de objetos perdidos");
   }
 }
-
-
 
 module.exports = {
   getObjectoPerdidos,

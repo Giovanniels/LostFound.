@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="back-button">
+    <a href="javascript:void(0);" (click)="goBack()" class="back-button">&#9664; Volver Atrás</a>
+  </div>
+  <h2>Crear Nuevo Objeto Encontrado</h2>
+
+  <!-- Mensaje de error -->
+  <div *ngIf="errorMessage" class="error">
+    {{ errorMessage }}
+  </div>
+
+  <form *ngIf="createFoundItemForm" [formGroup]="createFoundItemForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="tipo">Tipo: <span class="required-asterisk">*</span></label>
+      <select formControlName="tipo" id="tipo" (change)="onTipoChange()">
+        <option *ngFor="let tipo of tipos" [value]="tipo._id">{{ tipo.nombre }}</option>
+        <option value="otro">Otro</option>
+      </select>
+      <div *ngIf="tipoControl?.invalid && tipoControl?.touched" class="error">
+        Tipo es obligatorio.
+      </div>
+    </div>
+
+    <div *ngIf="tipoControl && tipoControl.value === 'otro'" class="form-group">
+      <label for="nuevoTipo">Nuevo Tipo:</label>
+      <input type="text" formControlName="nuevoTipo" id="nuevoTipo">
+      <div *ngIf="createFoundItemForm.get('nuevoTipo')?.hasError('tipoTooLong')">
+        <small class="text-danger">El nombre no debe superar los 22 caracteres.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="descripcion">Descripción: <span class="required-asterisk">*</span></label>
+      <textarea formControlName="descripcion" id="descripcion"></textarea>
+      <div *ngIf="createFoundItemForm.get('descripcion')?.invalid && createFoundItemForm.get('descripcion')?.touched" class="error">
+        Descripción es obligatoria.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="detalles">Detalles:</label>
+      <textarea formControlName="detalles" id="detalles"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="ubicacion">Ubicación en el Mapa: <span class="required-asterisk">*</span></label>
+      <div #map style="height: 300px;"></div>
+      <div *ngIf="createFoundItemForm.get('ubicacion')?.invalid && createFoundItemForm.get('ubicacion')?.touched" class="error">
+        Ubicación es obligatoria.
+      </div>
+      <div *ngIf="!createFoundItemForm.get('ubicacion')?.valid && errorMessage === null" class="error">
+        Se requiere una ubicación en el mapa.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="informacionContacto">Número de teléfono: <span class="required-asterisk">*</span></label>
+      <input type="text" formControlName="informacionContacto" id="informacionContacto">
+      <div *ngIf="createFoundItemForm.get('informacionContacto')?.hasError('invalidPhoneNumber') && createFoundItemForm.get('informacionContacto')?.touched" class="error">
+        Número de teléfono no es válido. Debe tener 12 caracteres.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="imagen">Seleccionar Imagen(jpg o png)</label>
+      <input type="file" (change)="onImageSelected($event)">
+    </div>
+
+    <button type="submit" [disabled]="createFoundItemForm.invalid">Crear Objeto Encontrado</button>
+  </form>
+</div>

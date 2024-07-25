@@ -1,9 +1,9 @@
-
 const Joi = require("joi");
 
 const imagen = Joi.string();
 const fecha = Joi.date().min(1);
 const tipo = Joi.string().min(1);
+const nuevoTipo = Joi.string().allow('').optional(); // Agregar el campo para nuevoTipo
 const descripcion = Joi.string().min(1);
 const detalles = Joi.string().min(1);
 const ubicacion = Joi.string().min(1);
@@ -14,6 +14,7 @@ const informacionContacto = Joi.string();
 const objectoEncontradoBodySchema = Joi.object({
     imagen,
     tipo,
+    nuevoTipo, // Incluir el nuevo campo en el esquema
     fecha,
     descripcion,
     detalles,
@@ -21,7 +22,6 @@ const objectoEncontradoBodySchema = Joi.object({
     activa,
     relevante,
     informacionContacto,
-
 });
 
 module.exports = { objectoEncontradoBodySchema };

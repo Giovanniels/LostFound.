@@ -11,7 +11,7 @@
 
   <form *ngIf="createLostItemForm" [formGroup]="createLostItemForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
-      <label for="tipo">Tipo:</label>
+      <label for="tipo">Tipo: <span class="required-asterisk">*</span></label>
       <select formControlName="tipo" id="tipo" (change)="onTipoChange()">
         <option *ngFor="let tipo of tipos" [value]="tipo._id">{{ tipo.nombre }}</option>
         <option value="otro">Otro</option>
@@ -24,10 +24,13 @@
     <div *ngIf="tipoControl && tipoControl.value === 'otro'" class="form-group">
       <label for="nuevoTipo">Nuevo Tipo:</label>
       <input type="text" formControlName="nuevoTipo" id="nuevoTipo">
+      <div *ngIf="createLostItemForm.get('nuevoTipo')?.hasError('tipoTooLong')">
+        <small class="text-danger">El nombre no debe superar los 22 caracteres.</small>
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="descripcion">Descripción:</label>
+      <label for="descripcion">Descripción: <span class="required-asterisk">*</span></label>
       <textarea formControlName="descripcion" id="descripcion"></textarea>
       <div *ngIf="createLostItemForm.get('descripcion')?.invalid && createLostItemForm.get('descripcion')?.touched" class="error">
         Descripción es obligatoria.
@@ -40,7 +43,7 @@
     </div>
 
     <div class="form-group">
-      <label for="ubicacion">Ubicación en el Mapa:</label>
+      <label for="ubicacion">Ubicación en el Mapa: <span class="required-asterisk">*</span></label>
       <div #map style="height: 300px;"></div>
       <div *ngIf="createLostItemForm.get('ubicacion')?.invalid && createLostItemForm.get('ubicacion')?.touched" class="error">
         Ubicación es obligatoria.
@@ -51,12 +54,15 @@
     </div>
 
     <div class="form-group">
-      <label for="informacionContacto">Información de Contacto:</label>
+      <label for="informacionContacto">Número de teléfono: <span class="required-asterisk">*</span></label>
       <input type="text" formControlName="informacionContacto" id="informacionContacto">
+      <div *ngIf="createLostItemForm.get('informacionContacto')?.hasError('invalidPhoneNumber') && createLostItemForm.get('informacionContacto')?.touched" class="error">
+        Número de teléfono no es válido. Debe tener 12 caracteres.
+      </div>
     </div>
 
     <div class="form-group">
-      <label for="imagen">Seleccionar Imagen:</label>
+      <label for="imagen">Seleccionar Imagen(jpg o png):</label>
       <input type="file" (change)="onImageSelected($event)">
     </div>
 

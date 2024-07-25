@@ -35,14 +35,18 @@ const upload = multer({
   limits: { fileSize: maxSize },
 });
 
+// Middleware para registrar información de la imagen antes de guardarla
+const logImageInfo = (req, res, next) => {
+  // Puedes registrar información relevante aquí si es necesario
+  next();
+};
+
 router.get("/", objectoEncontradoController.getObjectoEncontrados);
-router.post("/", objectoEncontradoController.createObjectoEncontrado);
+router.post("/", upload.single('imagen'), logImageInfo, objectoEncontradoController.createObjectoEncontrado);
 router.get("/:id", objectoEncontradoController.getObjectoEncontradoById);
 router.put("/:id", objectoEncontradoController.updateObjectoEncontrado);
 router.delete("/:id", objectoEncontradoController.deleteObjectoEncontrado);
-router.post("/:id/upload-image", upload.single('imagen'), objectoEncontradoController.uploadObjectoEncontradoImage);
 router.get("/user/:userId", objectoEncontradoController.getObjectoEncontradosByUserId);
 router.get("/buscar/:tipo", objectoEncontradoController.buscarObjectoEncontradoPorTipo);
-
 
 module.exports = router;

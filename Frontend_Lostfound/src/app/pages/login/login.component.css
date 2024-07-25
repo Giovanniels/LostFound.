@@ -46,7 +46,7 @@
 }
 
 .container button {
-    background-color: #512da8; /* Cambio de color de fondo del botón a azul oscuro */
+    background-color:#10a2dc; /* Cambio de color de fondo del botón a azul oscuro */
     color: #ffffff;
     font-size: 12px;
     padding: 10px 45px;
@@ -167,8 +167,8 @@
 }
 
 .toggle {
-    background-color: #512da8;
-    background: linear-gradient(to right, #5c6bc0, #512da8);
+    background-color: #007bff;
+    background: linear-gradient(to right, #5c6bc0, #007bff);
     color: #ffffff;
     position: relative;
     left: -100%;

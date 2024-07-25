@@ -3,7 +3,7 @@
         <div class="form-container sign-up">
             <form>
                 <h1>Crear Cuenta</h1>
-                <span> Ingresa tu correo electrónico universitario para registrarte</span>
+                <span> Ingresa tu correo universitario o personal para registrarte</span>
                 <input type="text" name="nombre" [(ngModel)]="signUpObj.nombre" placeholder="Nombre">
                 <input type="email" name="email" [(ngModel)]="signUpObj.email" placeholder="Correo electrónico universitario">
                 <button (click)="createUsuario()">Registrarse</button>
@@ -23,7 +23,7 @@
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
                     <h1>Bienvenido a Lostfound</h1>
-                    <p>Ingresa tu correo electrónico universitario y contraseña para ingresar al sitio web</p>
+                    <p>Ingresa tu correo  y contraseña para ingresar al sitio web</p>
                     <button type="button" class="hidden" id="login" (click)="isSignDivVisible = false">Iniciar Sesión</button>
                 </div>
                 <div class="toggle-panel toggle-right">

@@ -1,0 +1,182 @@
+/* Estilos para el contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Estilos para la información de orden */
+  .order-info {
+    text-align: center;
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilos para el título */
+  h2 {
+    font-size: 28px;
+    color: #333;
+    text-align: center;
+  }
+  
+  /* Estilos para el formulario de búsqueda */
+  .search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-form select {
+    width: 200px; /* Ajusta el ancho según tus necesidades */
+    padding: 10px;
+    border: 1px solid #A8D0E6;
+    border-radius: 5px;
+    outline: none;
+    margin-right: 10px; /* Espacio entre el select y el botón */
+  }
+  
+  .search-form button {
+    padding: 10px 20px;
+    background-color: #0ac7f6;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Estilos para los botones de acción */
+  .actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espacio entre botones */
+    margin-bottom: 20px;
+  }
+  
+  .action-button {
+    padding: 10px 20px;
+    background-color: #0ac7f6;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    max-width: 150px; /* Ancho máximo para mantener consistencia */
+  }
+  
+  .action-button:hover {
+    background-color: #009dd9; /* Un tono de azul más oscuro al pasar el ratón */
+  }
+  
+  /* Estilos para el contenedor de elementos de la lista */
+  .item-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    justify-content: center;
+  }
+  
+  /* Estilos para los elementos de la lista */
+  .item {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    min-height: 300px;
+  }
+  
+  /* Estilos para las imágenes de los objetos encontrados */
+  .image-container {
+    width: 100%;
+    height: 200px; /* Altura fija para todas las imágenes */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .found-item-image { /* Cambia la clase aquí */
+    width: 100%;
+    height: 100%;
+    object-fit: fill; /* Estira la imagen para llenar el contenedor */
+  }
+  
+  /* Estilos para los detalles de cada elemento */
+  .item-details {
+    padding: 20px;
+  }
+  
+  /* Estilos para el botón de detalles */
+  .detail-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #A8D0E6;
+    color: #333;
+    border: none;
+    border-top: 1px solid #ccc;
+    border-radius: 0 0 5px 5px;
+    cursor: pointer;
+    margin-top: auto;
+  }
+  
+  .detail-button:hover {
+    background-color: #9bc0d6; /* Un tono de azul más oscuro al pasar el ratón */
+  }
+  
+  /* Estilos para el paginador */
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .pagination-top {
+    margin-bottom: 20px; /* Espacio antes de la lista de elementos */
+  }
+  
+  .pagination-bottom {
+    margin-top: 20px; /* Espacio después de la lista de elementos */
+  }
+  
+  .page-numbers {
+    display: flex;
+    flex-wrap: wrap; /* Ajusta en pantallas pequeñas */
+    justify-content: center;
+  }
+  
+  .page-number {
+    padding: 10px 15px;
+    background-color: #A8D0E6;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+  
+  .page-number.active {
+    background-color: #e8e8ec;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .pagination-button {
+    padding: 10px 20px;
+    background-color: #A8D0E6;
+    color: #333;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 0 5px;
+  }
+  
+  .pagination-button:hover {
+    background-color: #9bc0d6; /* Un tono de azul más oscuro al pasar el ratón */
+  }
+  

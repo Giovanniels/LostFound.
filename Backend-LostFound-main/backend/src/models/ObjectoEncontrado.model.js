@@ -19,10 +19,13 @@ const objectoEncontradoSchema = new mongoose.Schema({
     default: true,
   },
 
-
   tipo: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Tipo",
+  },
+
+  nuevoTipo: {
+    type: String, // Campo para almacenar el nuevo tipo creado desde el frontend
   },
 
   descripcion: {

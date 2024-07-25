@@ -1,0 +1,67 @@
+<div class="container">
+    <h2>Detalles del Objeto Encontrado</h2> <!-- Cambiado de Perdido a Encontrado -->
+    <div class="card">
+      <div *ngIf="foundItem"> <!-- Cambiado de lostItem a foundItem -->
+        <img [src]="foundItem.imagen ? foundItem.imagen : 'assets/default-icon.png'" alt="Imagen del objeto encontrado" /> <!-- Cambiado de perdido a encontrado -->
+        <p *ngIf="!foundItem.imagen">No hay imagen disponible.</p> <!-- Cambiado de perdido a encontrado -->
+        <p><strong>Fecha:</strong> {{ foundItem.fecha | date:'yyyy-MM-dd' }}</p> <!-- Cambiado de lostItem a foundItem -->
+        <p><strong>Tipo:</strong> {{ foundItem.tipo.nombre }}</p> <!-- Cambiado de lostItem a foundItem -->
+        <p><strong>Descripción:</strong> {{ foundItem.descripcion }}</p> <!-- Cambiado de lostItem a foundItem -->
+        <p><strong>Detalles:</strong> {{ foundItem.detalles }}</p> <!-- Cambiado de lostItem a foundItem -->
+        <p><strong>Ubicación:</strong> {{ foundItem.ubicacion }}</p> <!-- Cambiado de lostItem a foundItem -->
+        <p><strong>Número de teléfono:</strong>
+          <a *ngIf="whatsappLink" [href]="whatsappLink" target="_blank">{{ foundItem.informacionContacto }}</a> <!-- Cambiado de lostItem a foundItem -->
+          <span *ngIf="!whatsappLink">{{ foundItem.informacionContacto }}</span> <!-- Cambiado de lostItem a foundItem -->
+        </p>
+      </div>
+      <div *ngIf="!foundItem"> <!-- Cambiado de lostItem a foundItem -->
+        <p>El objeto encontrado no se ha encontrado.</p> <!-- Cambiado de perdido a encontrado -->
+      </div>
+    </div>
+    <a href="javascript:void(0);" (click)="goBack()" class="back-button">&#9664; Volver Atrás</a>
+  </div>
+  
+  <div class="container">
+    <div class="card">
+      <div id="map" #map style="height: 300px;"></div> <!-- Contenedor del mapa -->
+    </div>
+  
+    <div class="card">
+      <div *ngIf="user">
+        <h3>Usuario que realizó la publicación:</h3>
+        <p><strong>Nombre:</strong> {{ user.nombre }}</p>
+        <p><strong>Correo electrónico:</strong>
+          <a [href]="'https://mail.google.com/mail/?view=cm&fs=1&to=' + user.email" target="_blank">{{ user.email }}</a>
+        </p>
+        <div class="user-rating">
+          <p><strong>Valoración Usuario:</strong> {{ rating }}/5</p>
+          <span class="star" [class.filled]="rating >= 1">&#9733;</span>
+          <span class="star" [class.filled]="rating >= 2">&#9733;</span>
+          <span class="star" [class.filled]="rating >= 3">&#9733;</span>
+          <span class="star" [class.filled]="rating >= 4">&#9733;</span>
+          <span class="star" [class.filled]="rating >= 5">&#9733;</span>
+        </div>
+      </div>
+    </div>
+  
+    <div class="card">
+      <div class="user-feedback" *ngIf="user">
+        <form (submit)="rateUser(user._id)">
+          <h3>Valorar usuario:</h3>
+          <label for="rating">Puntuación:</label>
+          <div class="rating">
+            <span class="star" [class.filled]="selectedStars >= 1" (click)="selectedStars = 1">&#9733;</span>
+            <span class="star" [class.filled]="selectedStars >= 2" (click)="selectedStars = 2">&#9733;</span>
+            <span class="star" [class.filled]="selectedStars >= 3" (click)="selectedStars = 3">&#9733;</span>
+            <span class="star" [class.filled]="selectedStars >= 4" (click)="selectedStars = 4">&#9733;</span>
+            <span class="star" [class.filled]="selectedStars >= 5" (click)="selectedStars = 5">&#9733;</span>
+          </div>
+          <label for="comentario">Comentario:</label>
+          <textarea id="comentario" name="comentario" [(ngModel)]="comentario"></textarea>
+          <button type="submit">Valorar Usuario</button>
+          <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div> <!-- Mensaje de error -->
+        </form>
+      </div>
+    </div>
+  </div>
+  

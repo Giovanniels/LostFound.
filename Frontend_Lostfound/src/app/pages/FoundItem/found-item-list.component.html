@@ -1,0 +1,63 @@
+<div class="container">
+    <h2>Lista de Objetos Encontrados</h2>
+    <p class="order-info">Ordenados del más reciente al más antiguo</p>
+    <!-- Formulario de búsqueda por tipo -->
+    <form class="search-form" (submit)="searchByType()">
+        <select [(ngModel)]="tipo" name="tipo" required>
+            <option value="" disabled selected>Seleccionar Tipo...</option>
+            <option *ngFor="let tipo of tipos" [value]="tipo._id">{{ tipo.nombre }}</option>
+        </select>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div class="actions">
+        <button class="action-button" (click)="loadUserFoundItems()">Historial de Publicaciones</button> <!-- Actualiza el método llamado -->
+        <button class="action-button" (click)="navigateToCreateFoundItem()">Crear Publicación</button> <!-- Actualiza el método llamado -->
+        <button class="action-button" (click)="goBack()">Volver Atrás</button>
+    </div>
+
+    <!-- Paginación superior -->
+    <div class="pagination-container pagination-top">
+        <button class="pagination-button" (click)="goToPreviousPage()" *ngIf="showPreviousButton()">Anterior</button>
+        <div class="page-numbers">
+            <button 
+                class="page-number" 
+                [class.active]="page === currentPage" 
+                *ngFor="let page of getTotalPages()" 
+                (click)="goToPage(page)">
+                {{ page }}
+            </button>
+        </div>
+        <button class="pagination-button" (click)="goToNextPage()" *ngIf="showNextButton()">Siguiente</button>
+    </div>
+
+    <div class="item-container">
+        <div class="item" *ngFor="let item of filteredItems.slice((currentPage - 1) * itemsPerPage, getLastIndex())">
+            <div class="image-container">
+                <img [src]="item.imagen ? item.imagen : 'assets/default-icon.png'" alt="Imagen del objeto encontrado" class="found-item-image" />
+            </div>
+            <div class="item-details">
+                <p><strong>Fecha:</strong> {{ item.fecha | date:'yyyy-MM-dd' }}</p>
+                <p><strong>Tipo:</strong> {{ item.tipo.nombre }}</p>
+                <p><strong>Descripción:</strong> {{ item.descripcion }}</p>
+                <p><strong>Detalles:</strong> {{ item.detalles }}</p>
+            </div>
+            <button class="detail-button" (click)="navigateToFoundItemDetail(item._id)">Detalles</button> <!-- Actualiza el método llamado -->
+        </div>
+    </div>
+
+    <!-- Paginación inferior -->
+    <div class="pagination-container pagination-bottom">
+        <button class="pagination-button" (click)="goToPreviousPage()" *ngIf="showPreviousButton()">Anterior</button>
+        <div class="page-numbers">
+            <button 
+                class="page-number" 
+                [class.active]="page === currentPage" 
+                *ngFor="let page of getTotalPages()" 
+                (click)="goToPage(page)">
+                {{ page }}
+            </button>
+        </div>
+        <button class="pagination-button" (click)="goToNextPage()" *ngIf="showNextButton()">Siguiente</button>
+    </div>
+</div>

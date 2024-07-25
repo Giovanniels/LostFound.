@@ -1,21 +1,19 @@
-<nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark mat-elevation-z4">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#" onclick="return false;" style="font-size: 32px; font-weight: bold; margin-left: 270px;">Lostfound</a> <!-- Utilizar onclick para evitar que se ejecute la acción -->
+    <a class="navbar-brand" href="#" onclick="return false;">Lostfound</a>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/dashboard']">
-          <i class="fas fa-home"></i> <!-- Icono de casa -->
-          Inicio
+          <mat-icon>home</mat-icon> Inicio
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" [routerLink]="['/user-profile']">
-          <i class="fas fa-user"></i> <!-- Icono de persona -->
-          Perfil
+          <mat-icon>person</mat-icon> Perfil
         </a>
       </li>
       <li class="nav-item">
-        <button class="btn btn-primary" type="button" (click)="onLogoff()">Cerrar Sesión</button>
+        <button mat-raised-button color="primary" class="logout-button" (click)="onLogoff()">Cerrar Sesión</button>
       </li>
     </ul>
   </div>

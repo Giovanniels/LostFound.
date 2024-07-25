@@ -9,13 +9,13 @@ import { LostItemsService, TipoService } from './lost-item.service';
 })
 export class LostItemsListComponent implements OnInit {
   lostItems: any[] = [];
-  filteredItems: any[] = []; // Almacena los elementos filtrados
-  tipos: any[] = []; // Añade una propiedad para almacenar los tipos
+  filteredItems: any[] = [];
+  tipos: any[] = [];
   tipo: string = '';
   errorMessage: string = '';
   previousState: any[] = [];
-  currentPage: number = 1; // Página actual
-  itemsPerPage: number = 12; // Cantidad de elementos por página
+  currentPage: number = 1;
+  itemsPerPage: number = 12;
 
   constructor(
     private lostItemsService: LostItemsService,
@@ -25,17 +25,17 @@ export class LostItemsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadLostItems();
-    this.loadTipos(); // Carga los tipos al inicializar
+    this.loadTipos();
   }
 
   loadLostItems(): void {
     this.lostItemsService.getLostItems().subscribe({
       next: (response: any) => {
         if (response.state === 'Success' && Array.isArray(response.data)) {
-          this.lostItems = response.data.sort((a: any, b: any) => 
+          this.lostItems = response.data.sort((a: any, b: any) =>
             new Date(b.fecha).getTime() - new Date(a.fecha).getTime()
           );
-          this.filteredItems = this.lostItems; // Inicialmente, todos los elementos son filtrados
+          this.filteredItems = this.lostItems;
         } else {
           console.error("La respuesta del servicio no es válida:", response);
         }
@@ -50,7 +50,7 @@ export class LostItemsListComponent implements OnInit {
     this.tipoService.getTipos().subscribe({
       next: (response: any) => {
         if (response.state === 'Success' && Array.isArray(response.data)) {
-          this.tipos = response.data; // Almacena los tipos
+          this.tipos = response.data;
         } else {
           console.error("La respuesta del servicio de tipos no es válida:", response);
         }
@@ -113,11 +113,11 @@ export class LostItemsListComponent implements OnInit {
     if (!item || !item.imagen || typeof item.imagen !== 'string') {
       return defaultImage;
     }
-    
+
     const baseUrl = 'http://localhost:3001';
     const imagePath = item.imagen.replace(/\\/g, '/');
     const imageUrl = `${baseUrl}/uploads/documents/${imagePath}`;
-    
+
     return imageUrl;
   }
 
@@ -127,8 +127,8 @@ export class LostItemsListComponent implements OnInit {
       this.lostItemsService.searchLostItemsByType(this.tipo.trim()).subscribe({
         next: (response: any) => {
           if (response.success && Array.isArray(response.objetosPerdidos)) {
-            this.filteredItems = response.objetosPerdidos; // Almacena los elementos filtrados
-            this.currentPage = 1; // Resetea a la primera página al buscar
+            this.filteredItems = response.objetosPerdidos;
+            this.currentPage = 1;
           } else {
             console.error("La respuesta del servicio no es válida:", response);
           }
@@ -148,19 +148,15 @@ export class LostItemsListComponent implements OnInit {
       this.lostItemsService.getUserLostItems(userId).subscribe({
         next: (response: any) => {
           if (response.state === 'Success' && Array.isArray(response.data)) {
-            if (response.data.length > 0) {
-              this.previousState = this.lostItems.slice();
-            } else {
-              this.loadLostItems();
-            }
             this.lostItems = response.data;
+            this.filteredItems = response.data;
+            this.currentPage = 1;
             this.errorMessage = '';
-            this.filteredItems = response.data; // Actualiza los elementos filtrados
           } else {
             console.error("La respuesta del servicio no es válida:", response);
             this.errorMessage = "No se encontraron publicaciones para este usuario.";
             this.lostItems = [];
-            this.filteredItems = []; // Asegúrate de que los elementos filtrados estén vacíos
+            this.filteredItems = [];
           }
         },
         error: (error: any) => {

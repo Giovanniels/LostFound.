@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -9,15 +9,17 @@ import { Router } from '@angular/router';
 export class LayoutComponent {
   loggedUser: any;
 
-  constructor(private router: Router) {
-    const loggedUserString = localStorage.getItem('loggedUser');
-    if (loggedUserString !== null) {
-      this.loggedUser = JSON.parse(loggedUserString);
+  constructor(private authService: AuthService) {
+    const token = localStorage.getItem('token');
+    if (token !== null) {
+      const userInfo = this.authService.getUserInfoFromToken(token);
+      if (userInfo) {
+        this.loggedUser = userInfo;
+      }
     }
   }
 
   onLogoff() {
-    localStorage.removeItem('loggedUser');
-    this.router.navigateByUrl('/login');
+    this.authService.logoff();
   }
 }

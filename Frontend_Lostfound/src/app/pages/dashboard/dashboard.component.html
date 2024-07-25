@@ -1,55 +1,46 @@
 <!-- dashboard.component.html -->
 
 <div class="dashboard-page">
-  <!-- Aquí va todo el contenido del dashboard -->
   <h1>Categorías</h1>
 
-  <!-- Botones de Navegación -->
   <div class="navigation-buttons">
-    <button [routerLink]="['/lost-items']">
-      <i class="fas fa-search"></i> Objetos Perdidos
+    <button mat-button class="custom-button" [routerLink]="['/lost-items']">
+      <mat-icon>search</mat-icon> Objetos Perdidos
     </button>
-    <button (click)="navigateToFoundItems()">
-      <i class="fas fa-handshake"></i> Objetos Encontrados
+    <button mat-button class="custom-button" (click)="navigateToFoundItems()">
+      <mat-icon>handshake</mat-icon> Objetos Encontrados
     </button>
   </div>
 
-<!-- dashboard.component.html -->
-<div class="main-functionalities">
-<div class="site-info">
-  <div class="info-container">
-    <div class="info-text">
-      <h2>Bienvenidos! LostFound te ofrece la oportunidad de buscar un objeto perdido y publicar un objeto encontrado en nuestra comunidad universitaria</h2>
-      <p>En LostFound puedes realizar publicaciones respecto a objetos perdidos o encontrados, el proceso es sencillo solo debes ingresar a la sección de objetos perdidos o objetos encontrados, luego seleccionar la opción crear nueva publicación, ingresar información relevante sobre el objeto, agregar fotos, tus datos de contacto si es necesario y listo!.</p>
-    </div>
-  </div>
-</div>
+  <mat-card class="info-container">
+    <mat-card-content>
+      <mat-icon>info</mat-icon>
+      <h2>Bienvenidos!</h2>
+      <p>LostFound te ofrece la oportunidad de buscar un objeto perdido y publicar un objeto encontrado en nuestra comunidad universitaria.</p>
+    </mat-card-content>
+  </mat-card>
 
-
-  <!-- Funcionalidades -->
-  <div class="main-functionalities">
-    <div class="info-container">
-      <i class="fas fa-search"></i>
-      <h2>Filtro de busqueda</h2>
+  <mat-card class="main-functionalities">
+    <mat-card-content>
+      <mat-icon>filter_alt</mat-icon>
+      <h2>Filtro de búsqueda</h2>
       <p>También puedes buscar un objeto encontrado en Lostfound con el filtro de búsqueda especializado ingresando su categoría.</p>
-    </div>
-  </div>
+    </mat-card-content>
+  </mat-card>
 
-  <!-- Funcionalidades -->
-  <div class="main-functionalities">
-    <div class="info-container">
-      <i class="fas fa-user-cog"></i>
+  <mat-card class="main-functionalities">
+    <mat-card-content>
+      <mat-icon>account_circle</mat-icon>
       <h2>Gestión de cuenta</h2>
       <p>Si deseas modificar tu perfil debes ingresar al apartado de gestión de cuenta. Se recomienda cambiar la clave temporal por una clave propia para mayor seguridad.</p>
-    </div>
-  </div>
+    </mat-card-content>
+  </mat-card>
 
-  <!-- Funcionalidades -->
-  <div class="main-functionalities">
-    <div class="info-container">
-      <i class="fas fa-star"></i>
+  <mat-card class="main-functionalities">
+    <mat-card-content>
+      <mat-icon>star</mat-icon>
       <h2>Valoración de usuarios</h2>
-      <p>La página LostFound permitirá crear una valoración a un usuario que realiza una publicación, la valoración es de 1 a 5 estrellas. Si la persona tiene una valoración promedio menor a 3 estrellas, la persona no podrá publicar durante un mes en la página web, esto está implementado para que las personas no realicen publicaciones falsas y mejorar la confiabilidad del sitio web.</p>
-    </div>
-  </div>
+      <p>La página LostFound permitirá crear una valoración a un usuario que realiza una publicación. Si la persona tiene una valoración promedio menor a 3 estrellas, no podrá publicar durante un mes.</p>
+    </mat-card-content>
+  </mat-card>
 </div>

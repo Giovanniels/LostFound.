@@ -1,21 +1,45 @@
 /* layout.component.css */
 
 .navbar {
-  background-color: rgba(0, 0, 255, 0.5); /* Fondo azul transparente */
-}
-
-.navbar-nav .nav-link {
-  color: white; /* Texto blanco */
-}
-
-.navbar-nav {
-  margin-left: auto; /* Mover los botones hacia la derecha */
+  background-color: rgba(16, 162, 220, 0.5); /* Fondo azul transparente */
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
 }
 
 .navbar-brand {
-  color: white; /* Texto blanco */
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  margin: 0 auto; /* Centra el título horizontalmente */
 }
 
-.navbar .btn {
-  color: white; /* Texto blanco */
+.navbar-nav {
+  display: flex;
+  margin-left: auto; /* Mover los botones hacia la derecha */
+}
+
+.nav-item {
+  list-style: none;
+  margin-left: 20px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-link mat-icon {
+  margin-right: 8px;
+}
+
+button.logout-button {
+  background-color: #10a2dc; /* Azul claro */
+  color: white;
+}
+
+button.logout-button:hover {
+  background-color: #0c7bb3; /* Azul más oscuro al pasar el ratón */
 }

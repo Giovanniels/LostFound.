@@ -36,7 +36,7 @@ export class LoginComponent {
           localStorage.setItem('userName', userInfo.name);
         }
 
-        this.router.navigateByUrl('/dashboard');
+        this.router.navigateByUrl('/lost-items');
       } else {
         console.error('Error de inicio de sesión:', response);
         this.toastr.error('Ha ocurrido un error al iniciar sesión');

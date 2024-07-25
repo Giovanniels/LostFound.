@@ -5,6 +5,14 @@
   padding: 20px;
 }
 
+/* Estilos para la información de orden */
+.order-info {
+  text-align: center;
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
 /* Estilos para el título */
 h2 {
   font-size: 28px;
@@ -12,29 +20,21 @@ h2 {
   text-align: center;
 }
 
-.default-image {
-  text-align: center;
-  margin-top: 10px;
-}
-
-.default-image img {
-  width: 100px; /* Ajusta según tus necesidades */
-  height: auto;
-}
-
 /* Estilos para el formulario de búsqueda */
 .search-form {
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-bottom: 20px;
 }
 
-.search-form input[type="text"] {
-  width: 300px;
+.search-form select {
+  width: 200px; /* Ajusta el ancho según tus necesidades */
   padding: 10px;
   border: 1px solid #A8D0E6;
   border-radius: 5px;
   outline: none;
+  margin-right: 10px; /* Espacio entre el select y el botón */
 }
 
 .search-form button {
@@ -49,7 +49,8 @@ h2 {
 /* Estilos para los botones de acción */
 .actions {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 10px; /* Espacio entre botones */
   margin-bottom: 20px;
 }
 
@@ -60,14 +61,19 @@ h2 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  max-width: 150px; /* Ancho máximo para mantener consistencia */
+}
+
+.action-button:hover {
+  background-color: #009dd9; /* Un tono de azul más oscuro al pasar el ratón */
 }
 
 /* Estilos para el contenedor de elementos de la lista */
 .item-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Ajusta el tamaño */
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
-  justify-content: center; /* Centra el contenido */
+  justify-content: center;
 }
 
 /* Estilos para los elementos de la lista */
@@ -81,20 +87,23 @@ h2 {
   flex-direction: column;
   justify-content: space-between;
   padding: 20px;
-  min-height: 300px; /* Asegura una altura mínima */
+  min-height: 300px;
 }
 
 /* Estilos para las imágenes de los objetos perdidos */
 .image-container {
-  height: 200px; /* Altura fija para las imágenes */
+  width: 100%;
+  height: 200px; /* Altura fija para todas las imágenes */
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .lost-item-image {
   width: 100%;
-  height: auto;
-  max-width: 100%;
-  max-height: 100%;
+  height: 100%;
+  object-fit: fill; /* Estira la imagen para llenar el contenedor */
 }
 
 /* Estilos para los detalles de cada elemento */
@@ -112,11 +121,11 @@ h2 {
   border-top: 1px solid #ccc;
   border-radius: 0 0 5px 5px;
   cursor: pointer;
-  margin-top: auto; /* Empuja el botón hacia abajo */
+  margin-top: auto;
 }
 
 .detail-button:hover {
-  background-color: #A8D0E6;
+  background-color: #9bc0d6; /* Un tono de azul más oscuro al pasar el ratón */
 }
 
 /* Estilos para el paginador */
@@ -127,8 +136,18 @@ h2 {
   margin-top: 20px;
 }
 
+.pagination-top {
+  margin-bottom: 20px; /* Espacio antes de la lista de elementos */
+}
+
+.pagination-bottom {
+  margin-top: 20px; /* Espacio después de la lista de elementos */
+}
+
 .page-numbers {
   display: flex;
+  flex-wrap: wrap; /* Ajusta en pantallas pequeñas */
+  justify-content: center;
 }
 
 .page-number {
@@ -158,5 +177,5 @@ h2 {
 }
 
 .pagination-button:hover {
-  background-color: #A8D0E6;
+  background-color: #9bc0d6; /* Un tono de azul más oscuro al pasar el ratón */
 }
