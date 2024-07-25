@@ -7,9 +7,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3001:3001"
-    volumes:
-      - .:/usr/src/app
-    command: sh -c "cd /usr/src/app/backend && nodemon src/server.js"
+    working_dir: /usr/src/app/backend
+    command: sh -c "nodemon src/server.js"
 
   frontend:
     build:
@@ -17,6 +16,5 @@ services:
       dockerfile: Dockerfile
     ports:
       - "4200:4200"
-    volumes:
-      - .:/usr/src/app
-    command: sh -c "cd /usr/src/app/frontend && ng serve --host 0.0.0.0 --port 4200"
+    working_dir: /usr/src/app/frontend
+    command: sh -c "ng serve --host 0.0.0.0 --port 4200"
