@@ -114,7 +114,7 @@ export class FoundItemsListComponent implements OnInit {
       return defaultImage;
     }
 
-    const baseUrl = 'http://localhost:3001';
+    const baseUrl = 'http://146.83.198.35:1606';
     const imagePath = item.imagen.replace(/\\/g, '/');
     const imageUrl = `${baseUrl}/uploads/documents/${imagePath}`;
 

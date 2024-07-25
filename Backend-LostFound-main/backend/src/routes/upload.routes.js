@@ -40,7 +40,7 @@ router.post('/upload/general', upload.single('imagen'), (req, res) => {
   }
   
   // Si se proporcionó una imagen, devuelve la ruta de la imagen guardada
-  res.json({ imageUrl: 'http://localhost:3001/' + req.file.path });
+  res.json({ imageUrl: 'http://146.83.198.35:1606' + req.file.path });
 });
 
 module.exports = router;

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ValoracionService {
-  private apiUrl = 'http://localhost:3001/api/Valoracion'; // Corregido con la URL correcta
+  private apiUrl = 'http://146.83.198.35:1606/api/Valoracion'; // Corregido con la URL correcta
 
   constructor(private http: HttpClient) { }
 

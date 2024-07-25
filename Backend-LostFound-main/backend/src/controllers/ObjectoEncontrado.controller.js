@@ -52,7 +52,7 @@ async function createObjectoEncontrado(req, res) {
     const { userId, ...objectoEncontradoData } = req.body;
 
     // Verificar si se adjuntó una imagen
-    const imageUrl = req.file ? 'http://localhost:3001/' + req.file.path : null;
+    const imageUrl = req.file ? 'http://146.83.198.35:1606' + req.file.path : null;
 
     // Agregar la URL de la imagen a los datos del objeto encontrado si existe
     if (imageUrl) {
@@ -157,7 +157,7 @@ async function deleteObjectoEncontrado(req, res) {
 async function uploadObjectoEncontradoImage(req, res) {
   try {
     const { id } = req.params;
-    const imageUrl = 'http://localhost:3001/' + req.file.path;
+    const imageUrl = 'http://146.83.198.35:1606' + req.file.path;
 
     // Actualizamos el objeto encontrado con la URL de la imagen
     const updatedObjectoEncontrado = await ObjectoEncontrado.findByIdAndUpdate(id, { imagen: imageUrl }, { new: true });

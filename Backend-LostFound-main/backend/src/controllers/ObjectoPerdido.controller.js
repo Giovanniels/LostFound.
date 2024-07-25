@@ -51,7 +51,7 @@ async function createObjectoPerdido(req, res) {
     const { userId, ...objectoPerdidoData } = req.body;
 
     // Verificar si se adjuntó una imagen
-    const imageUrl = req.file ? 'http://localhost:3001/' + req.file.path : null;
+    const imageUrl = req.file ? 'http://146.83.198.35:1606' + req.file.path : null;
 
     // Agregar la URL de la imagen a los datos del objeto perdido si existe
     if (imageUrl) {
@@ -156,7 +156,7 @@ async function deleteObjectoPerdido(req, res) {
 async function uploadObjectoPerdidoImage(req, res) {
   try {
     const { id } = req.params;
-    const imageUrl = 'http://localhost:3001/' + req.file.path;
+    const imageUrl = 'http://146.83.198.35:1606' + req.file.path;
 
     // Actualizamos el objeto perdido con la URL de la imagen
     const updatedObjectoPerdido = await ObjectoPerdido.findByIdAndUpdate(id, { imagen: imageUrl }, { new: true });

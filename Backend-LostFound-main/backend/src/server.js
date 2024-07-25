@@ -17,7 +17,7 @@ async function setupServer() {
 
     // Configurar CORS
     const corsOptions = {
-      origin: "http://localhost:4200", // Reemplaza con la URL real del cliente
+      origin: "http://146.83.198.35:443", // Reemplaza con la URL real del cliente
       methods: "GET, POST, PUT, DELETE",
       allowedHeaders: "Content-Type, Authorization",
     };
@@ -43,7 +43,7 @@ async function setupServer() {
       if (!req.file) {
         return res.status(400).json({ message: 'No se proporcionó ninguna imagen' });
       }
-      res.json({ imageUrl: 'http://localhost:3001/' + req.file.path });
+      res.json({ imageUrl: 'http://146.83.198.35:1606' + req.file.path });
     });
 
     // Configurar Express para servir archivos estáticos

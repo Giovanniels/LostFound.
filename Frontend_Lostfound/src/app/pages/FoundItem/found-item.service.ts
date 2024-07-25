@@ -8,7 +8,7 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class FoundItemsService {
-  private apiUrl = 'http://localhost:3001'; // Reemplaza esto con la URL de tu backend
+  private apiUrl = 'http://146.83.198.35:1606'; // Reemplaza esto con la URL de tu backend
 
   constructor(private http: HttpClient) { }
 
@@ -97,7 +97,7 @@ export class FoundItemsService {
   providedIn: 'root'
 })
 export class TipoService {
-  private apiUrl = 'http://localhost:3001'; // Reemplaza esto con la URL de tu backend
+  private apiUrl = 'http://146.83.198.35:1606'; // Reemplaza esto con la URL de tu backend
 
   constructor(private http: HttpClient) { }
 
@@ -111,7 +111,7 @@ export class TipoService {
   providedIn: 'root'
 })
 export class ValoracionService {
-  private apiUrl = 'http://localhost:3001/api/Valoracion'; // Reemplaza con la URL de tu backend
+  private apiUrl = 'http://146.83.198.35:1606/api/Valoracion'; // Reemplaza con la URL de tu backend
 
   constructor(private http: HttpClient) { }
 
@@ -132,7 +132,7 @@ export class ValoracionService {
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl = 'http://localhost:3001'; // Reemplaza esto con la URL de tu backend
+  private apiUrl = 'http://146.83.198.35:1606'; // Reemplaza esto con la URL de tu backend
 
   constructor(private http: HttpClient) { }
 
